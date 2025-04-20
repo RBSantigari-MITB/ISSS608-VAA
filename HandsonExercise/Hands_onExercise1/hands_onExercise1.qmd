@@ -18,3 +18,9 @@ exam_data <- read_csv("data/Exam_data.csv")
 ```{R}
 hist(exam_data$MATHS)
 ```
+##1.4 Grammar of Graphics
+###1.4.1 A Layered Grammar of Graphics
+##1.5 Essential Grammatical Elements in ggplot2: data
+```{r}
+ggplot(data=exam_data)
+```
