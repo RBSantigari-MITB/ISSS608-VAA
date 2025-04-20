@@ -1,0 +1,15 @@
+---
+title: "Hands_onExercise1"
+author: "Rajesh Babu Santigari"
+---
+
+# 1  A Layered Grammar of Graphics: ggplot2 methods
+## 1.2 Getting started
+### 1.2.1 Installing and loading the required libraries
+```{r}
+pacman::p_load(tidyverse)
+```
+##1.2.2 Importing data
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
