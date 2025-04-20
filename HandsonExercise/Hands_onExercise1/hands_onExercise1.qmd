@@ -24,3 +24,4 @@ hist(exam_data$MATHS)
 ```{r}
 ggplot(data=exam_data)
 ```
+ 
