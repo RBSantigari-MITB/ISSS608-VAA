@@ -6,18 +6,10 @@ website:
   navbar:
     left:
       - text: "Hands on Exercise"
-        menu: 
-          - text:"Hands on Exercise 1"
-            href: "HandsonExercise/Hands_onExercise1/hands_onExercise1.html"
-    right:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-      
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: true
-    
-editor: visual
+        menu:
+          - text: "Hands on Exercise 1"
+            href: Hands_onExercise/Hands_onExercise1/hands_onExercise1.html
+        right:
+          - href: index.qmd
+            text: Home
+          - about.qmd
