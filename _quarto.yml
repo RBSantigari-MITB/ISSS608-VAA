@@ -9,8 +9,15 @@ website:
         menu: 
           - text:"Hands on Exercise 1"
             href: HandsonExercise/Hands_onExercise1/hands_onExercise1.html
-
     right:
       - href: index.qmd
         text: Home
       - about.qmd
+      
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    
+editor: visual
