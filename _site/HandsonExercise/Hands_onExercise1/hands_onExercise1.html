@@ -185,7 +185,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##1.2.2 Importing data</p>
+</section>
+<section id="importing-data" class="level3">
+<h3 class="anchored" data-anchor-id="importing-data">##1.2.2 Importing data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Exam_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -199,7 +201,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>##1.3 Introducing ggplot ###1.3.1 R Graphics VS ggplot</p>
+</section>
+</section>
+<section id="introducing-ggplot-1.3.1-r-graphics-vs-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="introducing-ggplot-1.3.1-r-graphics-vs-ggplot">##1.3 Introducing ggplot ###1.3.1 R Graphics VS ggplot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(exam_data<span class="sc">$</span>MATHS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -210,7 +215,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.4 Grammar of Graphics ###1.4.1 A Layered Grammar of Graphics ##1.5 Essential Grammatical Elements in ggplot2: data</p>
+<section id="grammar-of-graphics-1.4.1-a-layered-grammar-of-graphics-1.5-essential-grammatical-elements-in-ggplot2-data" class="level3">
+<h3 class="anchored" data-anchor-id="grammar-of-graphics-1.4.1-a-layered-grammar-of-graphics-1.5-essential-grammatical-elements-in-ggplot2-data">##1.4 Grammar of Graphics ###1.4.1 A Layered Grammar of Graphics ##1.5 Essential Grammatical Elements in ggplot2: data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -221,7 +227,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.6 Essential Grammatical Elements in ggplot2: Aesthetic mappings</p>
+</section>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-aesthetic-mappings" class="level2">
+<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-aesthetic-mappings">##1.6 Essential Grammatical Elements in ggplot2: Aesthetic mappings</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -233,7 +242,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.7 Essential Grammatical Elements in ggplot2: geom ###1.7.1 Geometric Objects: geom_bar</p>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-geom-1.7.1-geometric-objects-geom_bar" class="level2">
+<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-geom-1.7.1-geometric-objects-geom_bar">##1.7 Essential Grammatical Elements in ggplot2: geom ###1.7.1 Geometric Objects: geom_bar</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -246,7 +257,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.2 Geometric Objects: geom_dotplot</p>
+<section id="geometric-objects-geom_dotplot" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-objects-geom_dotplot">###1.7.2 Geometric Objects: geom_dotplot</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -278,7 +290,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.3 Geometric Objects: geom_histogram()</p>
+</section>
+<section id="geometric-objects-geom_histogram" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-objects-geom_histogram">###1.7.3 Geometric Objects: geom_histogram()</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -294,7 +308,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.4 Modifying a geometric object by changing geom()</p>
+</section>
+</section>
+<section id="modifying-a-geometric-object-by-changing-geom" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-a-geometric-object-by-changing-geom">###1.7.4 Modifying a geometric object by changing geom()</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS)) <span class="sc">+</span></span>
@@ -309,7 +326,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.5 Modifying a geometric object by changing aes()</p>
+</section>
+<section id="modifying-a-geometric-object-by-changing-aes" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-a-geometric-object-by-changing-aes">###1.7.5 Modifying a geometric object by changing aes()</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
@@ -324,7 +343,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.6 Geometric Objects: geom-density()</p>
+<section id="geometric-objects-geom-density" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-objects-geom-density">###1.7.6 Geometric Objects: geom-density()</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -350,7 +370,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.7 Geometric Objects: geom_boxplot</p>
+</section>
+<section id="geometric-objects-geom_boxplot" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-objects-geom_boxplot">###1.7.7 Geometric Objects: geom_boxplot</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS,       </span>
@@ -364,7 +386,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####NOTCHES</p>
+<section id="notches" class="level4">
+<h4 class="anchored" data-anchor-id="notches">####NOTCHES</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, </span>
@@ -378,7 +401,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.8 Geometric Objects: geom_violin</p>
+</section>
+</section>
+<section id="geometric-objects-geom_violin" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-objects-geom_violin">###1.7.8 Geometric Objects: geom_violin</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, </span>
@@ -392,7 +418,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.9 Geometric Objects: geom_point()</p>
+</section>
+<section id="geometric-objects-geom_point" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-objects-geom_point">###1.7.9 Geometric Objects: geom_point()</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
@@ -406,7 +434,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.7.10 geom objects can be combined</p>
+</section>
+<section id="geom-objects-can-be-combined" class="level3">
+<h3 class="anchored" data-anchor-id="geom-objects-can-be-combined">###1.7.10 geom objects can be combined</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, </span>
@@ -422,7 +452,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.8 Essential Grammatical Elements in ggplot2: stat ###1.8.1 Working with stat()</p>
+</section>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-stat-1.8.1-working-with-stat" class="level2">
+<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-stat-1.8.1-working-with-stat">##1.8 Essential Grammatical Elements in ggplot2: stat ###1.8.1 Working with stat()</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, <span class="at">x=</span> GENDER)) <span class="sc">+</span></span>
@@ -435,7 +468,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.8.2 Working with stat - the stat_summary() method</p>
+<section id="working-with-stat---the-stat_summary-method" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-stat---the-stat_summary-method">###1.8.2 Working with stat - the stat_summary() method</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, <span class="at">x=</span> GENDER)) <span class="sc">+</span></span>
@@ -452,7 +486,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.8.3 Working with stat - the geom() method</p>
+</section>
+<section id="working-with-stat---the-geom-method" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-stat---the-geom-method">###1.8.3 Working with stat - the geom() method</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, <span class="at">x=</span> GENDER)) <span class="sc">+</span></span>
@@ -469,7 +505,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.8.4 Adding a best fit curve on a scatterplot?</p>
+</section>
+<section id="adding-a-best-fit-curve-on-a-scatterplot" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-best-fit-curve-on-a-scatterplot">###1.8.4 Adding a best fit curve on a scatterplot?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
@@ -490,7 +528,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####The default smoothing method can be overridden as shown below.</p>
+<section id="the-default-smoothing-method-can-be-overridden-as-shown-below." class="level4">
+<h4 class="anchored" data-anchor-id="the-default-smoothing-method-can-be-overridden-as-shown-below.">####The default smoothing method can be overridden as shown below.</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
@@ -509,7 +548,11 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.9 Essential Grammatical Elements in ggplot2: Facets ###1.9.1 Working with facet_wrap()</p>
+</section>
+</section>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-facets-1.9.1-working-with-facet_wrap" class="level2">
+<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-facets-1.9.1-working-with-facet_wrap">##1.9 Essential Grammatical Elements in ggplot2: Facets ###1.9.1 Working with facet_wrap()</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS)) <span class="sc">+</span></span>
@@ -523,7 +566,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.9.2 facet_grid() function</p>
+<section id="facet_grid-function" class="level3">
+<h3 class="anchored" data-anchor-id="facet_grid-function">###1.9.2 facet_grid() function</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS)) <span class="sc">+</span></span>
@@ -537,7 +581,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.10 Essential Grammatical Elements in ggplot2: Coordinates ###1.10.1 Working with Coordinate</p>
+</section>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-coordinates-1.10.1-working-with-coordinate" class="level2">
+<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-coordinates-1.10.1-working-with-coordinate">##1.10 Essential Grammatical Elements in ggplot2: Coordinates ###1.10.1 Working with Coordinate</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -550,7 +597,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####coord_flip().</p>
+<section id="coord_flip." class="level4">
+<h4 class="anchored" data-anchor-id="coord_flip.">####coord_flip().</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -564,7 +612,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>###1.10.2 Changing the y- and x-axis range</p>
+</section>
+<section id="changing-the-y--and-x-axis-range" class="level3">
+<h3 class="anchored" data-anchor-id="changing-the-y--and-x-axis-range">###1.10.2 Changing the y- and x-axis range</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
@@ -581,7 +631,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####The code chunk below fixed both the y-axis and x-axis range from 0-100.</p>
+<section id="the-code-chunk-below-fixed-both-the-y-axis-and-x-axis-range-from-0-100." class="level4">
+<h4 class="anchored" data-anchor-id="the-code-chunk-below-fixed-both-the-y-axis-and-x-axis-range-from-0-100.">####The code chunk below fixed both the y-axis and x-axis range from 0-100.</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
@@ -601,7 +652,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>##1.11 Essential Grammatical Elements in ggplot2: themes ###1.11.1 Working with theme(theme_gray)</p>
+</section>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-themes-1.11.1-working-with-themetheme_gray" class="level3">
+<h3 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-themes-1.11.1-working-with-themetheme_gray">##1.11 Essential Grammatical Elements in ggplot2: themes ###1.11.1 Working with theme(theme_gray)</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -616,7 +670,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####theme_classic().</p>
+<section id="theme_classic." class="level4">
+<h4 class="anchored" data-anchor-id="theme_classic.">####theme_classic().</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -631,7 +686,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####theme_minimal()</p>
+</section>
+<section id="theme_minimal" class="level4">
+<h4 class="anchored" data-anchor-id="theme_minimal">####theme_minimal()</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -646,7 +703,9 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </div>
 </div>
-<p>####theme_bw()</p>
+</section>
+<section id="theme_bw" class="level4">
+<h4 class="anchored" data-anchor-id="theme_bw">####theme_bw()</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -663,6 +722,7 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 
 
+</section>
 </section>
 </section>
 </section>
