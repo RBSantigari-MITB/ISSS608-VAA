@@ -245,7 +245,7 @@ ggplot(exam_data, aes(x = CLASS, y = ENGLISH, fill = GENDER)) +
         legend.position = "bottom") +
   ggtitle("English Score by Class and Gender")
 ```
-###(5)Compare subject-wise score distributions in a single view.
+###(5)Compare subject-wise score distributions in a single view
 ```{r}
 library(patchwork)
 
