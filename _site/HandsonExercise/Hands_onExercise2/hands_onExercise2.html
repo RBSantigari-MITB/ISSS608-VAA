@@ -187,15 +187,682 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>#2 Beyond ggplot2 Fundamentals ##2.2 Getting started ###2.2.1 Installing and loading the required libraries</p>
+<section id="load-required-packages-including-extrafont" class="level1">
+<h1>Load required packages including extrafont</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggrepel, patchwork, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               ggthemes, hrbrthemes,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               tidyverse, extrafont)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-fonts-into-memory-important-for-hrbrthemes" class="level1">
+<h1>Load fonts into memory (important for hrbrthemes)</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>extrafont<span class="sc">::</span><span class="fu">loadfonts</span>(<span class="at">device =</span> <span class="st">"win"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Agency FB already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Algerian already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ami R already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Arial Black already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Arial already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Arial Narrow already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Arial Rounded MT Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bahnschrift already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Baskerville Old Face already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bauhaus 93 already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bell MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Berlin Sans FB already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Berlin Sans FB Demi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bernard MT Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Blackadder ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bodoni MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bodoni MT Black already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bodoni MT Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bodoni MT Poster Compressed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Book Antiqua already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bookman Old Style already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bookshelf Symbol 7 already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bradley Hand ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Britannic Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Broadway already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Brush Script MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calibri already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calibri Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Californian FB already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calisto MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Cambria already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Candara already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Candara Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Castellar already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centaur already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Century already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Century Gothic already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Century Schoolbook already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Chiller already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Colonna MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Comic Sans MS already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Consolas already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Constantia already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Cooper Black already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Copperplate Gothic Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Copperplate Gothic Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Corbel already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Corbel Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Courier New already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Curlz MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dubai already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dubai Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dubai Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ebrima already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Edwardian Script ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Elephant already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Engravers MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Eras Bold ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Eras Demi ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Eras Light ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Eras Medium ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Felix Titling already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Footlight MT Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Forte already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Franklin Gothic Book already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Franklin Gothic Demi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Franklin Gothic Demi Cond already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Franklin Gothic Heavy already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Franklin Gothic Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Franklin Gothic Medium Cond already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Freestyle Script already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>French Script MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>FZShuTi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>FZYaoTi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gabriola already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gadugi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Garamond already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Georgia already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gigi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gill Sans Ultra Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gill Sans Ultra Bold Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gill Sans MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gill Sans MT Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gill Sans MT Ext Condensed Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Gloucester MT Extra Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Goudy Old Style already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Goudy Stout already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYGraphic-Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYGungSo-Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYGothic-Extra already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYGothic-Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYHeadLine-Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYMyeongJo-Extra already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYSinMyeongJo-Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYPMokGak-Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYPost-Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYPost-Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>HYShortSamul-Medium already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Haettenschweiler already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Harlow Solid Italic already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Harrington already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Headline R already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>High Tower Text already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Impact already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Imprint MT Shadow already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Informal Roman already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ink Free already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Javanese Text already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Jokerman already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Juice ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Kristen ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Kunstler Script already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Wide Latin already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Leelawadee UI already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Leelawadee UI Semilight already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>LiSu already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Bright already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Calligraphy already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Console already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Fax already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Handwriting already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Sans already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Sans Typewriter already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lucida Sans Unicode already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Magic R already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Magneto already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Maiandra GD already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malgun Gothic already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malgun Gothic Semilight already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Marlett already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Matura MT Script Capitals already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Microsoft Himalaya already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Microsoft Yi Baiti already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Microsoft New Tai Lue already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Microsoft PhagsPa already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Microsoft Sans Serif already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Microsoft Tai Le already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Mistral already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Modern No. 20 already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Mongolian Baiti already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Monotype Corsiva already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>MS Outlook already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>MS Reference Sans Serif already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>MS Reference Specialty already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>MT Extra already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>MV Boli already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Myanmar Text already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New Gulim already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Niagara Engraved already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Niagara Solid already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>OCR A Extended already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Old English Text MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Onyx already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Palace Script MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Palatino Linotype already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Papyrus already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Parchment already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Perpetua already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Perpetua Titling MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Playbill already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Poor Richard already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Pristina already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Pyunji R already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rage Italic already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ravie already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rockwell already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rockwell Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rockwell Extra Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Sans Serif Collection already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Script MT Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe Fluent Icons already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe MDL2 Assets already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe Print already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe Script already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Light already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Semibold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Semilight already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Black already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Emoji already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Historic already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Symbol already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Segoe UI Variable already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Showcard Gothic already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>SimSun-ExtB already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>SimSun-ExtG already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Sitka Text already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Snap ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STCaiyun already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Stencil already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STFangsong already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STHupo already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STKaiti already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STLiti already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STSong already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STXihei already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STXingkai already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STXinwei already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>STZhongsong already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Sylfaen already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Symbol already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Tahoma already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Tempus Sans ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Times New Roman already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Trebuchet MS already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Tw Cen MT already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Tw Cen MT Condensed already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Tw Cen MT Condensed Extra Bold already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Verdana already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Viner Hand ITC already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Vivaldi already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Vladimir Script already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Webdings already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Wingdings already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Wingdings 2 already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Wingdings 3 already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Yet R already registered with windowsFonts().</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>YouYuan already registered with windowsFonts().</code></pre>
+</div>
+</div>
+<p>#2 Beyond ggplot2 Fundamentals ##2.2 Getting started ###2.2.1 Installing and loading the required libraries</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggrepel, patchwork, </span>
+<span id="cb221-2"><a href="#cb221-2" aria-hidden="true" tabindex="-1"></a>               ggthemes, hrbrthemes,</span>
+<span id="cb221-3"><a href="#cb221-3" aria-hidden="true" tabindex="-1"></a>               tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>###2.2.2 Importing data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">RBSantigari-MITB</span><span class="sc">\\</span><span class="st">ISSS608-VAA</span><span class="sc">\\</span><span class="st">HandsonExercise</span><span class="sc">\\</span><span class="st">Hands_onExercise2</span><span class="sc">\\</span><span class="st">data</span><span class="sc">\\</span><span class="st">Exam_data (1).csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb222"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb222-1"><a href="#cb222-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">RBSantigari-MITB</span><span class="sc">\\</span><span class="st">ISSS608-VAA</span><span class="sc">\\</span><span class="st">HandsonExercise</span><span class="sc">\\</span><span class="st">Hands_onExercise2</span><span class="sc">\\</span><span class="st">data</span><span class="sc">\\</span><span class="st">Exam_data (1).csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 322 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
@@ -209,18 +876,18 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 <p>##2.3 Beyond ggplot2 Annotation: ggrepel</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span>  </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> ID), </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">hjust =</span> .<span class="dv">5</span>, </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb224"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb224-2"><a href="#cb224-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
+<span id="cb224-3"><a href="#cb224-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
+<span id="cb224-4"><a href="#cb224-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb224-5"><a href="#cb224-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, </span>
+<span id="cb224-6"><a href="#cb224-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span>  </span>
+<span id="cb224-7"><a href="#cb224-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> ID), </span>
+<span id="cb224-8"><a href="#cb224-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">hjust =</span> .<span class="dv">5</span>, </span>
+<span id="cb224-9"><a href="#cb224-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb224-10"><a href="#cb224-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb224-11"><a href="#cb224-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb224-12"><a href="#cb224-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -231,24 +898,24 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>###2.3.1 Working with ggrepel</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span>  </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> ID), </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
+<span id="cb227-3"><a href="#cb227-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
+<span id="cb227-4"><a href="#cb227-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb227-5"><a href="#cb227-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, </span>
+<span id="cb227-6"><a href="#cb227-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span>  </span>
+<span id="cb227-7"><a href="#cb227-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> ID), </span>
+<span id="cb227-8"><a href="#cb227-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb227-9"><a href="#cb227-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb227-10"><a href="#cb227-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb227-11"><a href="#cb227-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -259,55 +926,21 @@ increasing max.overlaps</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>##2.4 Beyond ggplot2 Themes</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()<span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb230"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb230-2"><a href="#cb230-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb230-3"><a href="#cb230-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb230-4"><a href="#cb230-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb230-5"><a href="#cb230-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb230-6"><a href="#cb230-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb230-7"><a href="#cb230-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
+<span id="cb230-8"><a href="#cb230-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -317,14 +950,14 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb231"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb231-2"><a href="#cb231-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb231-3"><a href="#cb231-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb231-4"><a href="#cb231-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb231-5"><a href="#cb231-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb231-6"><a href="#cb231-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb231-7"><a href="#cb231-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()<span class="sc">+</span></span>
+<span id="cb231-8"><a href="#cb231-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -333,16 +966,15 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </div>
-<p>###2.4.1 Working with ggtheme package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) <span class="sc">+</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb232"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb232-2"><a href="#cb232-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb232-3"><a href="#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb232-4"><a href="#cb232-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb232-5"><a href="#cb232-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb232-6"><a href="#cb232-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb232-7"><a href="#cb232-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb232-8"><a href="#cb232-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -351,42 +983,15 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </div>
-<p>###2.4.2 Working with hrbthems package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-not found in Windows font database
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-not found in Windows font database
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-not found in Windows font database</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-family not found in Windows font database
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-family not found in Windows font database
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-family not found in Windows font database</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb233"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb233-2"><a href="#cb233-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb233-3"><a href="#cb233-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb233-4"><a href="#cb233-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb233-5"><a href="#cb233-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb233-6"><a href="#cb233-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb233-7"><a href="#cb233-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
+<span id="cb233-8"><a href="#cb233-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -395,39 +1000,16 @@ font family not found in Windows font database</code></pre>
 </div>
 </div>
 </div>
+<p>###2.4.1 Working with ggtheme package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) <span class="sc">+</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>(<span class="at">axis_title_size =</span> <span class="dv">18</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">base_size =</span> <span class="dv">15</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">grid =</span> <span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-not found in Windows font database</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-family not found in Windows font database
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-family not found in Windows font database
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-family not found in Windows font database</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-font family not found in Windows font database</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb234"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb234-2"><a href="#cb234-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb234-3"><a href="#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb234-4"><a href="#cb234-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb234-5"><a href="#cb234-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb234-6"><a href="#cb234-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb234-7"><a href="#cb234-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) <span class="sc">+</span></span>
+<span id="cb234-8"><a href="#cb234-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -436,19 +1018,286 @@ font family not found in Windows font database</code></pre>
 </div>
 </div>
 </div>
-<p>##2.5 Beyond Single Graph ## 2.5 Beyond Single Graph</p>
+<p>###2.4.2 Working with hrbthems package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> exam_data, </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"grey25"</span>, </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"grey90"</span>) <span class="sc">+</span> </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb235"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb235-2"><a href="#cb235-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb235-3"><a href="#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb235-4"><a href="#cb235-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb235-5"><a href="#cb235-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb235-6"><a href="#cb235-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb235-7"><a href="#cb235-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) <span class="sc">+</span></span>
+<span id="cb235-8"><a href="#cb235-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb236"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb236-2"><a href="#cb236-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb236-3"><a href="#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb236-4"><a href="#cb236-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb236-5"><a href="#cb236-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb236-6"><a href="#cb236-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb236-7"><a href="#cb236-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>) <span class="sc">+</span></span>
+<span id="cb236-8"><a href="#cb236-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>(<span class="at">axis_title_size =</span> <span class="dv">18</span>,</span>
+<span id="cb236-9"><a href="#cb236-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">base_size =</span> <span class="dv">15</span>,</span>
+<span id="cb236-10"><a href="#cb236-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">grid =</span> <span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##2.5 Beyond Single Graph ## 2.5 Beyond Single Graph ###Distribution of Maths score</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb237"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> exam_data, </span>
+<span id="cb237-2"><a href="#cb237-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb237-3"><a href="#cb237-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, </span>
+<span id="cb237-4"><a href="#cb237-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb237-5"><a href="#cb237-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"grey25"</span>, </span>
+<span id="cb237-6"><a href="#cb237-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"grey90"</span>) <span class="sc">+</span> </span>
+<span id="cb237-7"><a href="#cb237-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb237-8"><a href="#cb237-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>)</span>
+<span id="cb237-9"><a href="#cb237-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###Distribution of English score</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb238"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb238-2"><a href="#cb238-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> ENGLISH)) <span class="sc">+</span></span>
+<span id="cb238-3"><a href="#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb238-4"><a href="#cb238-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb238-5"><a href="#cb238-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb238-6"><a href="#cb238-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb238-7"><a href="#cb238-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb238-8"><a href="#cb238-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of English scores"</span>)</span>
+<span id="cb238-9"><a href="#cb238-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###scatterplot for English score versus Maths score</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb239"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb239-2"><a href="#cb239-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
+<span id="cb239-3"><a href="#cb239-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
+<span id="cb239-4"><a href="#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb239-5"><a href="#cb239-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, </span>
+<span id="cb239-6"><a href="#cb239-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span>  </span>
+<span id="cb239-7"><a href="#cb239-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb239-8"><a href="#cb239-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb239-9"><a href="#cb239-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span>
+<span id="cb239-10"><a href="#cb239-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###2.5.1 Creating Composite Graphics: pathwork methods ###2.5.2 Combining two ggplot2 graphs</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb241"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###2.5.3 Combining three ggplot2 graphs</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb242"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###2.5.4 Creating a composite figure with tag</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb244"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>((p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3) <span class="sc">+</span> </span>
+<span id="cb244-2"><a href="#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'I'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###2.5.5 Creating figure with insert</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb246"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb246-1"><a href="#cb246-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="sc">+</span> <span class="fu">inset_element</span>(p2, </span>
+<span id="cb246-2"><a href="#cb246-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">left =</span> <span class="fl">0.02</span>, </span>
+<span id="cb246-3"><a href="#cb246-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">bottom =</span> <span class="fl">0.7</span>, </span>
+<span id="cb246-4"><a href="#cb246-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">right =</span> <span class="fl">0.5</span>, </span>
+<span id="cb246-5"><a href="#cb246-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">top =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###2.5.6 Creating a composite figure by using patchwork and ggtheme</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb248"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb248-1"><a href="#cb248-1" aria-hidden="true" tabindex="-1"></a>patchwork <span class="ot">&lt;-</span> (p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3</span>
+<span id="cb248-2"><a href="#cb248-2" aria-hidden="true" tabindex="-1"></a>patchwork <span class="sc">&amp;</span> <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="extra-work" class="level1">
+<h1>Extra work</h1>
+<p>##(1)ggrepel provides geoms for ggplot2 to repel overlapping text labels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb250"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb250-1"><a href="#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb250-2"><a href="#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(MATHS, GENDER, <span class="at">label =</span> <span class="fu">rownames</span>(exam_data))) <span class="sc">+</span></span>
+<span id="cb250-3"><a href="#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
+<span id="cb250-4"><a href="#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb250-5"><a href="#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 296 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###(2) plot for top scoring students</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb252"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb252-1"><a href="#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb252-2"><a href="#cb252-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-3"><a href="#cb252-3" aria-hidden="true" tabindex="-1"></a>exam_data <span class="sc">%&gt;%</span></span>
+<span id="cb252-4"><a href="#cb252-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> MATHS, <span class="at">y =</span> ENGLISH)) <span class="sc">+</span></span>
+<span id="cb252-5"><a href="#cb252-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb252-6"><a href="#cb252-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">ifelse</span>(MATHS <span class="sc">&gt;</span> <span class="dv">90</span> <span class="sc">|</span> ENGLISH <span class="sc">&gt;</span> <span class="dv">90</span>, ID, <span class="st">""</span>)), </span>
+<span id="cb252-7"><a href="#cb252-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">3</span>, <span class="at">box.padding =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb252-8"><a href="#cb252-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Top Scoring Students in Maths or English"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 31 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>####(3) Combine plots</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb254"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb254-2"><a href="#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-3"><a href="#cb254-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb254-4"><a href="#cb254-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb254-5"><a href="#cb254-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Maths"</span>)</span>
+<span id="cb254-6"><a href="#cb254-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-7"><a href="#cb254-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(<span class="at">x =</span> ENGLISH)) <span class="sc">+</span></span>
+<span id="cb254-8"><a href="#cb254-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb254-9"><a href="#cb254-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English"</span>)</span>
+<span id="cb254-10"><a href="#cb254-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-11"><a href="#cb254-11" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###(4)English Score by Class and Gender</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb255"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(<span class="at">x =</span> CLASS, <span class="at">y =</span> ENGLISH, <span class="at">fill =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb255-2"><a href="#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb255-3"><a href="#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb255-4"><a href="#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb255-5"><a href="#cb255-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb255-6"><a href="#cb255-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English Score by Class and Gender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>###(5)Compare subject-wise score distributions in a single view.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb256"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb256-1"><a href="#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb256-2"><a href="#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="#cb256-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(<span class="at">x =</span> ENGLISH)) <span class="sc">+</span> </span>
+<span id="cb256-4"><a href="#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb256-5"><a href="#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English Scores"</span>)</span>
+<span id="cb256-6"><a href="#cb256-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-7"><a href="#cb256-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span> </span>
+<span id="cb256-8"><a href="#cb256-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"tomato"</span>) <span class="sc">+</span></span>
+<span id="cb256-9"><a href="#cb256-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Maths Scores"</span>)</span>
+<span id="cb256-10"><a href="#cb256-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-11"><a href="#cb256-11" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(exam_data, <span class="fu">aes</span>(<span class="at">x =</span> SCIENCE)) <span class="sc">+</span> </span>
+<span id="cb256-12"><a href="#cb256-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb256-13"><a href="#cb256-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Science Scores"</span>)</span>
+<span id="cb256-14"><a href="#cb256-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-15"><a href="#cb256-15" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands_onExercise2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

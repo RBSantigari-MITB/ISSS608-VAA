@@ -5,6 +5,18 @@ format: html
 editor: visual
 ---
 
+# Load required packages including extrafont
+```{r}
+pacman::p_load(ggrepel, patchwork, 
+               ggthemes, hrbrthemes,
+               tidyverse, extrafont)
+```
+
+# Load fonts into memory (important for hrbrthemes)
+```{r}
+extrafont::loadfonts(device = "win")
+```
+
 #2  Beyond ggplot2 Fundamentals
 ##2.2 Getting started
 ###2.2.1 Installing and loading the required libraries
@@ -123,7 +135,7 @@ ggplot(data=exam_data,
 ```
 ##2.5 Beyond Single Graph
 ## 2.5 Beyond Single Graph
-
+###Distribution of Maths score
 ```{r}
 p1 <- ggplot(data = exam_data, 
              aes(x = MATHS)) +
@@ -133,5 +145,121 @@ p1 <- ggplot(data = exam_data,
                  fill = "grey90") + 
   coord_cartesian(xlim = c(0, 100)) +
   ggtitle("Distribution of Maths scores")
+print(p1)
+```
+###Distribution of English score
+```{r}
+p2 <- ggplot(data=exam_data, 
+             aes(x = ENGLISH)) +
+  geom_histogram(bins=20, 
+                 boundary = 100,
+                 color="grey25", 
+                 fill="grey90") +
+  coord_cartesian(xlim=c(0,100)) +
+  ggtitle("Distribution of English scores")
+print(p2)
+```
+###scatterplot for English score versus Maths score
+```{r}
+p3 <- ggplot(data=exam_data, 
+             aes(x= MATHS, 
+                 y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100)) +
+  ggtitle("English scores versus Maths scores for Primary 3")
+print(p3)
+```
+###2.5.1 Creating Composite Graphics: pathwork methods
+###2.5.2 Combining two ggplot2 graphs
+```{r}
+p1 + p2
+```
+###2.5.3 Combining three ggplot2 graphs
+```{r}
+(p1 / p2) | p3
+```
+###2.5.4 Creating a composite figure with tag
+```{r}
+((p1 / p2) | p3) + 
+  plot_annotation(tag_levels = 'I')
+```
+###2.5.5 Creating figure with insert
+```{r}
+p3 + inset_element(p2, 
+                   left = 0.02, 
+                   bottom = 0.7, 
+                   right = 0.5, 
+                   top = 1)
+```
+###2.5.6 Creating a composite figure by using patchwork and ggtheme
+```{r}
+patchwork <- (p1 / p2) | p3
+patchwork & theme_economist()
 ```
 
+
+# Extra work
+##(1)ggrepel provides geoms for ggplot2 to repel overlapping text labels:
+```{r}
+library(ggrepel)
+ggplot(exam_data, aes(MATHS, GENDER, label = rownames(exam_data))) +
+  geom_text_repel() +
+  geom_point(color = 'red') +
+  theme_classic(base_size = 16)
+```
+
+###(2) plot for top scoring students
+```{r}
+library(ggrepel)
+
+exam_data %>%
+  ggplot(aes(x = MATHS, y = ENGLISH)) +
+  geom_point(color = "steelblue") +
+  geom_text_repel(aes(label = ifelse(MATHS > 90 | ENGLISH > 90, ID, "")), 
+                  size = 3, box.padding = 0.3) +
+  ggtitle("Top Scoring Students in Maths or English")
+```
+####(3) Combine plots
+```{r}
+library(patchwork)
+
+p1 <- ggplot(exam_data, aes(x = MATHS)) +
+  geom_histogram(bins = 20, fill = "lightblue") +
+  ggtitle("Maths")
+
+p2 <- ggplot(exam_data, aes(x = ENGLISH)) +
+  geom_histogram(bins = 20, fill = "lightgreen") +
+  ggtitle("English")
+
+p1 + p2 
+```
+###(4)English Score by Class and Gender
+```{r}
+ggplot(exam_data, aes(x = CLASS, y = ENGLISH, fill = GENDER)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  ggtitle("English Score by Class and Gender")
+```
+###(5)Compare subject-wise score distributions in a single view.
+```{r}
+library(patchwork)
+
+p1 <- ggplot(exam_data, aes(x = ENGLISH)) + 
+  geom_histogram(bins = 20, fill = "steelblue") +
+  ggtitle("English Scores")
+
+p2 <- ggplot(exam_data, aes(x = MATHS)) + 
+  geom_histogram(bins = 20, fill = "tomato") +
+  ggtitle("Maths Scores")
+
+p3 <- ggplot(exam_data, aes(x = SCIENCE)) + 
+  geom_histogram(bins = 20, fill = "darkgreen") +
+  ggtitle("Science Scores")
+
+(p1 | p2) / p3
+```
