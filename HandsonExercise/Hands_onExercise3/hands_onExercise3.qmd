@@ -404,3 +404,42 @@ fig <- config(
 
 fig   
 ```
+
+# -----------------------------------                 #########
+#     Preventing the Modebar from Appearing           #########
+# It always doesnt shows mode bar(not part of original code) #######
+```{r}
+
+library(plotly)
+
+fig <- plot_ly(
+  data = exam_data, 
+  x = ~MATHS, 
+  y = ~ENGLISH, 
+  type = 'scatter', 
+  mode = 'lines+markers'
+) %>%
+
+layout(
+  plot_bgcolor = '#e5ecf6',
+  xaxis = list(
+    zerolinecolor = '#ffff',
+    zerolinewidth = 2,
+    gridcolor = '#ffff'
+  ),
+  yaxis = list(
+    zerolinecolor = '#ffff',
+    zerolinewidth = 2,
+    gridcolor = '#ffff'
+  )
+)
+
+
+fig <- config(
+  fig,
+  displayModeBar = FALSE  
+)
+
+
+fig
+```
