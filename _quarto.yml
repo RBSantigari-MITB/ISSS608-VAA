@@ -15,6 +15,11 @@ website:
             href: HandsOnExercise/Hands_onExercise3(1)/hands_onExercise3(1).html
           - text: "Hands-on Exercise 3.2: Animated Statistical Graphics"
             href: HandsOnExercise/Hands_onExercise3(2)/hands_onExercise3_2.html
+      
+      - text: "Take Home Exercises"
+        menu:
+          - text: " Take home Exercise 1 "
+            href: TakehomeExercise/Take_homeExercise1/take_homeExercise1.html
     right:
       - href: index.qmd
         text: Home

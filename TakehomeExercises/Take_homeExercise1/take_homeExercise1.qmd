@@ -1,0 +1,16 @@
+---
+title: "Take_homeExercise1"
+author: "Rajesh"
+format: html
+editor: visual
+---
+
+```{r}
+
+library(tidyverse)
+
+data <- read_csv("data/respopagesex2024.csv")
+glimpse(data)
+
+```
+
