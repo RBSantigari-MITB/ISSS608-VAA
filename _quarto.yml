@@ -15,7 +15,8 @@ website:
             href: HandsOnExercise/Hands_onExercise3(1)/hands_onExercise3(1).html
           - text: "Hands-on Exercise 3.2: Animated Statistical Graphics"
             href: HandsOnExercise/Hands_onExercise3(2)/hands_onExercise3_2.html
-      
+          - text: "Hands on Exercise 4.1: Visualising Distribution"
+            href: HandsOnExercise/Hands_onExercise4(1)/hands_onExercise4_1.html
       - text: "Take Home Exercises"
         menu:
           - text: " Take home Exercise 1 "
