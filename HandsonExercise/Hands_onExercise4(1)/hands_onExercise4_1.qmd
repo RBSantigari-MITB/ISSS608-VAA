@@ -6,6 +6,7 @@ editor: visual
 ---
 
 # Visualising Distribution
+
 ##Installing and loading the packages
 
 ```{r}
@@ -19,8 +20,7 @@ pacman::p_load(ggdist, ggridges, ggthemes,
 exam <- read_csv("C:\\RBSantigari-MITB\\ISSS608-VAA\\HandsonExercise\\Hands_onExercise4(1)\\data\\Exam_data.csv")
 ```
 
-##Visualising Distribution with Ridgeline Plot
-### Plotting ridgeline graph: ggridges method
+##Visualising Distribution with Ridgeline Plot \### Plotting ridgeline graph: ggridges method
 
 ```{r}
 ggplot(exam, 
@@ -92,7 +92,7 @@ ggplot(exam,
   theme_ridges()
 ```
 
-#### Instead of using number to define the quantiles, we can also specify quantiles by cut points such as 2.5% and 97.5% tails to colour the ridgeline plot as shown in the figure below.###
+#### Instead of using number to define the quantiles, we can also specify quantiles by cut points such as 2.5% and 97.5% tails to colour the ridgeline plot as shown in the figure below.
 
 ```{r}
 ggplot(exam,
@@ -113,8 +113,7 @@ ggplot(exam,
   theme_ridges()
 ```
 
-##Visualising Distribution with Raincloud Plot
-###Plotting a Half Eye graph
+##Visualising Distribution with Raincloud Plot ###Plotting a Half Eye graph
 
 ```{r}
 ggplot(exam, 
@@ -158,8 +157,7 @@ ggplot(exam,
             dotsize = 2)
 ```
 
-###Finishing touch
-####Lastly, coord_flip() of ggplot2 package will be used to flip the raincloud chart horizontally to give it the raincloud appearance. At the same time, theme_economist() of ggthemes package is used to give the raincloud chart a professional publishing standard look.####
+###Finishing touch ####Lastly, coord_flip() of ggplot2 package will be used to flip the raincloud chart horizontally to give it the raincloud appearance. At the same time, theme_economist() of ggthemes package is used to give the raincloud chart a professional publishing standard look.####
 
 ```{r}
 ggplot(exam, 
@@ -198,4 +196,3 @@ ggplot(exam,
   theme_economist()
 
 ```
-
