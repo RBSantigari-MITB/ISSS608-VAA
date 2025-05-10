@@ -332,9 +332,66 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 </div>
 </div>
-<p>This visualisation illustrates the gender ratio (males divided by females) across various planning areas in Singapore for the year 2024. A gender ratio of 1 indicates equal numbers of males and females, while a value below 1 suggests a higher female population. The horizontal bar chart makes it easy to compare the relative gender balance across regions. We observe that most planning areas have a gender ratio below 1, implying that females outnumber males in many parts of Singapore. A few regions, however, have ratios approaching or above 1, indicating a more balanced or male-dominant population. This insight can be useful for policy-making, healthcare planning, and social programs that require demographic balancing. The chart uses a simple color scheme and horizontal layout to handle long planning area names and allow better readability. It is also helpful in spotting outliers or regions with a skewed gender ratio quickly.</p>
+<p>This visualisation illustrates the gender ratio (males divided by females) across various planning areas in Singapore for the year 2024. A gender ratio of 1 indicates equal numbers of males and females, while a value below 1 suggests a higher female population. The horizontal bar chart makes it easy to compare the relative gender balance across regions. We observe that most planning areas have a gender ratio below 1, implying that females outnumber males in many parts of Singapore. A few regions, however, have ratios approaching or above 1, indicating a more balanced or male-dominant population. This insight can be useful for policy-making, healthcare planning, and social programs that require demographic balancing. The chart uses a simple color scheme and horizontal layout to handle long planning area names and allow better readability. It is also helpful in spotting outliers or regions with a skewed gender ratio quickly.<br>
+</p>
+<section id="phase-2-peer-review-and-makeover" class="level1">
+<h1>Phase 2: Peer Review and Makeover</h1>
+<section id="selected-peer-visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="selected-peer-visualisation">Selected Peer Visualisation</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Peer’s Chart: Population Pyramids</figcaption>
+</figure>
+</div>
+<p>The visualisation reviewed here is a set of population pyramids comparing age and gender distribution across four selected planning areas in Singapore (2024): Bedok, Bukit Timah, Outram, and Tampines. These represent different housing, income, and historical profiles. The chart successfully explores structural demographic differences using mirrored horizontal bar plots.</p>
+<section id="good-design-elements" class="level3">
+<h3 class="anchored" data-anchor-id="good-design-elements">✅ Good Design Elements</h3>
+<p>1.Strong Visual Narrative – Selecting diverse planning areas gives meaningful urban comparison.</p>
+<p>2.Effective Faceting – Using facets keeps comparisons clean and consistent.</p>
+<p>3.Clear Titles and Labels – Titles, subtitles, and legends are well structured.</p>
+</section>
+<section id="areas-for-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="areas-for-improvement">❌ Areas for Improvement</h3>
+<p>1.Age Labels Overlap or Missing – Hard to read axis labels on the Y-axis.</p>
+<p>2.Color Convention – Orange for females and blue for males is okay, but reverse would align with common visual standards.</p>
+<p>3.Axis Scaling – Population scales differ across panels, making comparison harder.</p>
+<hr>
+</section>
+</section>
+<section id="makeover-version" class="level2">
+<h2 class="anchored" data-anchor-id="makeover-version">Makeover Version</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>makeover_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PA <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bedok"</span>, <span class="st">"Tampines"</span>, <span class="st">"Bukit Timah"</span>, <span class="st">"Outram"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA, Age, Sex) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Pop =</span> <span class="fu">sum</span>(Pop), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Pop =</span> <span class="fu">ifelse</span>(Sex <span class="sc">==</span> <span class="st">"Males"</span>, <span class="sc">-</span>Pop, Pop))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(makeover_data, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> Pop, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>PA, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> abs) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Males"</span> <span class="ot">=</span> <span class="st">"#3399FF"</span>, <span class="st">"Females"</span> <span class="ot">=</span> <span class="st">"#FF6699"</span>)) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Improved Population Pyramids of Selected Planning Areas (2024)"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Standardised layout, corrected axis and color conventions"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age Group"</span>, <span class="at">y =</span> <span class="st">"Population"</span>, <span class="at">fill =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="take_homeExercise1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Explanation of Improvements In this makeover, the missing or overlapping labels were corrected by ensuring clean filtering. Axes are now fixed to allow better population comparisons across areas. Colors were adjusted to align with common conventions (blue for males, pink for females). These changes enhance readability while preserving the original intent.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
