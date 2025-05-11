@@ -1,0 +1,6 @@
+---
+title: "Take_homeExercise2"
+author: "Rajesh babu Santigari"
+format: html
+editor: visual
+---
