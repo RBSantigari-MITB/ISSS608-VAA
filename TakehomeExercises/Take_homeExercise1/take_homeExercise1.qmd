@@ -84,7 +84,10 @@ This visualisation illustrates the gender ratio (males divided by females) acros
 
 ## Selected Peer Visualisation
 
-![Peer's Chart: Population Pyramids](unnamed-chunk-2-1.png){width=70%}
+https://pengxinhuang.netlify.app/take-home_ex01/
+
+
+![Peer's Chart: Population Pyramids](unnamed-chunk-2-1.png){width="70%"}
 
 The visualisation reviewed here is a set of population pyramids comparing age and gender distribution across four selected planning areas in Singapore (2024): Bedok, Bukit Timah, Outram, and Tampines. These represent different housing, income, and historical profiles. The chart successfully explores structural demographic differences using mirrored horizontal bar plots.
 
@@ -104,7 +107,7 @@ The visualisation reviewed here is a set of population pyramids comparing age an
 
 3.Axis Scaling – Population scales differ across panels, making comparison harder.
 
----
+------------------------------------------------------------------------
 
 ## Makeover Version
 
@@ -128,5 +131,4 @@ ggplot(makeover_data, aes(x = Age, y = Pop, fill = Sex)) +
   theme(strip.text = element_text(face = "bold"))
 ```
 
-Explanation of Improvements
-In this makeover, the missing or overlapping labels were corrected by ensuring clean filtering. Axes are now fixed to allow better population comparisons across areas. Colors were adjusted to align with common conventions (blue for males, pink for females). These changes enhance readability while preserving the original intent.
+Explanation of Improvements In this makeover, the missing or overlapping labels were corrected by ensuring clean filtering. Axes are now fixed to allow better population comparisons across areas. Colors were adjusted to align with common conventions (blue for males, pink for females). These changes enhance readability while preserving the original intent.
