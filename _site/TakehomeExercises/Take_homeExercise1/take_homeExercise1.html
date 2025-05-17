@@ -206,13 +206,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#phase-2-peer-review-and-makeover" id="toc-phase-2-peer-review-and-makeover" class="nav-link active" data-scroll-target="#phase-2-peer-review-and-makeover">Phase 2: Peer Review and Makeover</a>
+  <li><a href="#phase-1-visual-analysis-of-singapore-demographics" id="toc-phase-1-visual-analysis-of-singapore-demographics" class="nav-link active" data-scroll-target="#phase-1-visual-analysis-of-singapore-demographics">Phase 1 : Visual Analysis of Singapore Demographics</a>
   <ul class="collapse">
-  <li><a href="#selected-peer-visualisation" id="toc-selected-peer-visualisation" class="nav-link" data-scroll-target="#selected-peer-visualisation">Selected Peer Visualisation</a>
+  <li><a href="#visualisation-1-singapore-population-pyramid-2024" id="toc-visualisation-1-singapore-population-pyramid-2024" class="nav-link" data-scroll-target="#visualisation-1-singapore-population-pyramid-2024">Visualisation 1: Singapore Population Pyramid (2024)</a></li>
+  <li><a href="#visualisation-2-top-10-planning-areas-by-total-population" id="toc-visualisation-2-top-10-planning-areas-by-total-population" class="nav-link" data-scroll-target="#visualisation-2-top-10-planning-areas-by-total-population">Visualisation 2: Top 10 Planning Areas by Total Population</a></li>
+  <li><a href="#visualisation-3-gender-ratio-by-planning-area" id="toc-visualisation-3-gender-ratio-by-planning-area" class="nav-link" data-scroll-target="#visualisation-3-gender-ratio-by-planning-area">Visualisation 3: Gender Ratio by Planning Area</a></li>
+  </ul></li>
+  <li><a href="#phase-2-peer-review-and-makeover" id="toc-phase-2-peer-review-and-makeover" class="nav-link" data-scroll-target="#phase-2-peer-review-and-makeover">Phase 2: Peer Review and Makeover</a>
   <ul class="collapse">
+  <li><a href="#selected-peer-visualisation" id="toc-selected-peer-visualisation" class="nav-link" data-scroll-target="#selected-peer-visualisation">Selected Peer Visualisation</a></li>
   <li><a href="#good-design-elements" id="toc-good-design-elements" class="nav-link" data-scroll-target="#good-design-elements">✅ Good Design Elements</a></li>
   <li><a href="#areas-for-improvement" id="toc-areas-for-improvement" class="nav-link" data-scroll-target="#areas-for-improvement">❌ Areas for Improvement</a></li>
-  </ul></li>
   <li><a href="#makeover-version" id="toc-makeover-version" class="nav-link" data-scroll-target="#makeover-version">Makeover Version</a></li>
   </ul></li>
   </ul>
@@ -246,6 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="phase-1-visual-analysis-of-singapore-demographics" class="level1">
+<h1>Phase 1 : Visual Analysis of Singapore Demographics</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -284,7 +290,8 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 </div>
 <p>The table above shows the columns present in the dataset. It helps us understand what kind of data we are working with — such as planning area (<code>PA</code>), subzone (<code>SZ</code>), age, sex, and population count for the year 2024.</p>
-<p>#Visualisation 1: Singapore Population Pyramid (2024)</p>
+<section id="visualisation-1-singapore-population-pyramid-2024" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-1-singapore-population-pyramid-2024">Visualisation 1: Singapore Population Pyramid (2024)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pyramid_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age, Sex) <span class="sc">%&gt;%</span></span>
@@ -310,7 +317,9 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 <p>The visualisation above presents a population pyramid of Singapore for the year 2024, based on the dataset from the Department of Statistics. The plot displays age groups along the vertical axis and the population count on the horizontal axis. Males are represented on the left using negative values, while females are displayed on the right. This mirrored layout is a standard design in demography to allow easy gender comparison.</p>
 <p>The pyramid structure reveals age distribution patterns across genders. For instance, younger age groups generally show a balanced male-to-female ratio, while older age groups—especially those above 70—show a noticeable dominance of females, reflecting longer female life expectancy. Such patterns are essential for identifying demographic shifts, planning healthcare services, and allocating resources for ageing populations.</p>
 <p>Using ggplot2 with coord_flip() and scale_y_continuous(labels = abs) ensures intuitive interpretation. Overall, this visualisation effectively communicates both the structure and gender balance within the Singapore population in 2024.</p>
-<p>#Visualisation 2: Top 10 Planning Areas by Total Population</p>
+</section>
+<section id="visualisation-2-top-10-planning-areas-by-total-population" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-2-top-10-planning-areas-by-total-population">Visualisation 2: Top 10 Planning Areas by Total Population</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top_pa <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA) <span class="sc">%&gt;%</span></span>
@@ -333,7 +342,9 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 </div>
 <p>The visualisation above presents the top 10 most populous planning areas in Singapore for the year 2024. Using a horizontal bar chart, the plot ranks planning areas based on their total resident population, which is aggregated by summing the population across all subzones, age groups, and sexes. This view helps identify which parts of the country are most densely populated, providing insights into urban concentration and possible resource planning needs. By flipping the coordinates, the chart improves readability, especially for long area names. “Steelblue” bars are used for visual clarity and consistency. From a data storytelling perspective, this plot supports city planning decisions, housing development, and transport infrastructure targeting by spotlighting the areas with the highest population density. Such a visual is especially useful for media articles aimed at conveying geographic population trends in an accessible manner to the general public. It combines clarity, precision, and relevance—hallmarks of effective visual communication.</p>
-<p>#Visualisation 3: Gender Ratio by Planning Area</p>
+</section>
+<section id="visualisation-3-gender-ratio-by-planning-area" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-3-gender-ratio-by-planning-area">Visualisation 3: Gender Ratio by Planning Area</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gender_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA, Sex) <span class="sc">%&gt;%</span></span>
@@ -358,6 +369,8 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 <p>This visualisation illustrates the gender ratio (males divided by females) across various planning areas in Singapore for the year 2024. A gender ratio of 1 indicates equal numbers of males and females, while a value below 1 suggests a higher female population. The horizontal bar chart makes it easy to compare the relative gender balance across regions. We observe that most planning areas have a gender ratio below 1, implying that females outnumber males in many parts of Singapore. A few regions, however, have ratios approaching or above 1, indicating a more balanced or male-dominant population. This insight can be useful for policy-making, healthcare planning, and social programs that require demographic balancing. The chart uses a simple color scheme and horizontal layout to handle long planning area names and allow better readability. It is also helpful in spotting outliers or regions with a skewed gender ratio quickly.<br>
 </p>
+</section>
+</section>
 <section id="phase-2-peer-review-and-makeover" class="level1">
 <h1>Phase 2: Peer Review and Makeover</h1>
 <section id="selected-peer-visualisation" class="level2">
@@ -370,19 +383,19 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </figure>
 </div>
 <p>The visualisation reviewed here is a set of population pyramids comparing age and gender distribution across four selected planning areas in Singapore (2024): Bedok, Bukit Timah, Outram, and Tampines. These represent different housing, income, and historical profiles. The chart successfully explores structural demographic differences using mirrored horizontal bar plots.</p>
-<section id="good-design-elements" class="level3">
-<h3 class="anchored" data-anchor-id="good-design-elements">✅ Good Design Elements</h3>
+</section>
+<section id="good-design-elements" class="level2">
+<h2 class="anchored" data-anchor-id="good-design-elements">✅ Good Design Elements</h2>
 <p>1.Strong Visual Narrative – Selecting diverse planning areas gives meaningful urban comparison.</p>
 <p>2.Effective Faceting – Using facets keeps comparisons clean and consistent.</p>
 <p>3.Clear Titles and Labels – Titles, subtitles, and legends are well structured.</p>
 </section>
-<section id="areas-for-improvement" class="level3">
-<h3 class="anchored" data-anchor-id="areas-for-improvement">❌ Areas for Improvement</h3>
+<section id="areas-for-improvement" class="level2">
+<h2 class="anchored" data-anchor-id="areas-for-improvement">❌ Areas for Improvement</h2>
 <p>1.Age Labels Overlap or Missing – Hard to read axis labels on the Y-axis.</p>
 <p>2.Color Convention – Orange for females and blue for males is okay, but reverse would align with common visual standards.</p>
 <p>3.Axis Scaling – Population scales differ across panels, making comparison harder.</p>
 <hr>
-</section>
 </section>
 <section id="makeover-version" class="level2">
 <h2 class="anchored" data-anchor-id="makeover-version">Makeover Version</h2>

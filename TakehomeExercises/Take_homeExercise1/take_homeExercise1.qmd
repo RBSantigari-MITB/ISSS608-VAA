@@ -7,7 +7,7 @@ format:
 editor: visual
 ---
 
-
+# Phase 1 : Visual Analysis of Singapore Demographics
 
 ```{r}
 
@@ -20,7 +20,7 @@ glimpse(data)
 
 The table above shows the columns present in the dataset. It helps us understand what kind of data we are working with — such as planning area (`PA`), subzone (`SZ`), age, sex, and population count for the year 2024.
 
-#Visualisation 1: Singapore Population Pyramid (2024)
+## Visualisation 1: Singapore Population Pyramid (2024)
 
 ```{r}
 pyramid_data <- data %>%
@@ -44,7 +44,7 @@ The pyramid structure reveals age distribution patterns across genders. For inst
 
 Using ggplot2 with coord_flip() and scale_y_continuous(labels = abs) ensures intuitive interpretation. Overall, this visualisation effectively communicates both the structure and gender balance within the Singapore population in 2024.
 
-#Visualisation 2: Top 10 Planning Areas by Total Population
+## Visualisation 2: Top 10 Planning Areas by Total Population
 
 ```{r}
 top_pa <- data %>%
@@ -63,7 +63,7 @@ ggplot(top_pa, aes(x = reorder(PA, Total_Pop), y = Total_Pop)) +
 
 The visualisation above presents the top 10 most populous planning areas in Singapore for the year 2024. Using a horizontal bar chart, the plot ranks planning areas based on their total resident population, which is aggregated by summing the population across all subzones, age groups, and sexes. This view helps identify which parts of the country are most densely populated, providing insights into urban concentration and possible resource planning needs. By flipping the coordinates, the chart improves readability, especially for long area names. “Steelblue” bars are used for visual clarity and consistency. From a data storytelling perspective, this plot supports city planning decisions, housing development, and transport infrastructure targeting by spotlighting the areas with the highest population density. Such a visual is especially useful for media articles aimed at conveying geographic population trends in an accessible manner to the general public. It combines clarity, precision, and relevance—hallmarks of effective visual communication.
 
-#Visualisation 3: Gender Ratio by Planning Area
+## Visualisation 3: Gender Ratio by Planning Area
 
 ```{r}
 gender_ratio <- data %>%
@@ -94,7 +94,7 @@ https://pengxinhuang.netlify.app/take-home_ex01/
 
 The visualisation reviewed here is a set of population pyramids comparing age and gender distribution across four selected planning areas in Singapore (2024): Bedok, Bukit Timah, Outram, and Tampines. These represent different housing, income, and historical profiles. The chart successfully explores structural demographic differences using mirrored horizontal bar plots.
 
-### ✅ Good Design Elements
+## ✅ Good Design Elements
 
 1.Strong Visual Narrative – Selecting diverse planning areas gives meaningful urban comparison.
 
@@ -102,7 +102,7 @@ The visualisation reviewed here is a set of population pyramids comparing age an
 
 3.Clear Titles and Labels – Titles, subtitles, and legends are well structured.
 
-### ❌ Areas for Improvement
+## ❌ Areas for Improvement
 
 1.Age Labels Overlap or Missing – Hard to read axis labels on the Y-axis.
 
