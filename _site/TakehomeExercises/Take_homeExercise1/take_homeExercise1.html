@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -201,7 +201,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#phase-2-peer-review-and-makeover" id="toc-phase-2-peer-review-and-makeover" class="nav-link active" data-scroll-target="#phase-2-peer-review-and-makeover">Phase 2: Peer Review and Makeover</a>
+  <ul class="collapse">
+  <li><a href="#selected-peer-visualisation" id="toc-selected-peer-visualisation" class="nav-link" data-scroll-target="#selected-peer-visualisation">Selected Peer Visualisation</a>
+  <ul class="collapse">
+  <li><a href="#good-design-elements" id="toc-good-design-elements" class="nav-link" data-scroll-target="#good-design-elements">✅ Good Design Elements</a></li>
+  <li><a href="#areas-for-improvement" id="toc-areas-for-improvement" class="nav-link" data-scroll-target="#areas-for-improvement">❌ Areas for Improvement</a></li>
+  </ul></li>
+  <li><a href="#makeover-version" id="toc-makeover-version" class="nav-link" data-scroll-target="#makeover-version">Makeover Version</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -268,7 +284,7 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 </div>
 <p>The table above shows the columns present in the dataset. It helps us understand what kind of data we are working with — such as planning area (<code>PA</code>), subzone (<code>SZ</code>), age, sex, and population count for the year 2024.</p>
-<p>#Visualisation 1: Singapore Population Pyramid (2024)#</p>
+<p>#Visualisation 1: Singapore Population Pyramid (2024)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pyramid_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age, Sex) <span class="sc">%&gt;%</span></span>
@@ -294,7 +310,7 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 <p>The visualisation above presents a population pyramid of Singapore for the year 2024, based on the dataset from the Department of Statistics. The plot displays age groups along the vertical axis and the population count on the horizontal axis. Males are represented on the left using negative values, while females are displayed on the right. This mirrored layout is a standard design in demography to allow easy gender comparison.</p>
 <p>The pyramid structure reveals age distribution patterns across genders. For instance, younger age groups generally show a balanced male-to-female ratio, while older age groups—especially those above 70—show a noticeable dominance of females, reflecting longer female life expectancy. Such patterns are essential for identifying demographic shifts, planning healthcare services, and allocating resources for ageing populations.</p>
 <p>Using ggplot2 with coord_flip() and scale_y_continuous(labels = abs) ensures intuitive interpretation. Overall, this visualisation effectively communicates both the structure and gender balance within the Singapore population in 2024.</p>
-<p>#Visualisation 2: Top 10 Planning Areas by Total Population#</p>
+<p>#Visualisation 2: Top 10 Planning Areas by Total Population</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top_pa <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA) <span class="sc">%&gt;%</span></span>
@@ -317,7 +333,7 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 </div>
 <p>The visualisation above presents the top 10 most populous planning areas in Singapore for the year 2024. Using a horizontal bar chart, the plot ranks planning areas based on their total resident population, which is aggregated by summing the population across all subzones, age groups, and sexes. This view helps identify which parts of the country are most densely populated, providing insights into urban concentration and possible resource planning needs. By flipping the coordinates, the chart improves readability, especially for long area names. “Steelblue” bars are used for visual clarity and consistency. From a data storytelling perspective, this plot supports city planning decisions, housing development, and transport infrastructure targeting by spotlighting the areas with the highest population density. Such a visual is especially useful for media articles aimed at conveying geographic population trends in an accessible manner to the general public. It combines clarity, precision, and relevance—hallmarks of effective visual communication.</p>
-<p>#Visualisation 3: Gender Ratio by Planning Area#</p>
+<p>#Visualisation 3: Gender Ratio by Planning Area</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gender_ratio <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA, Sex) <span class="sc">%&gt;%</span></span>
