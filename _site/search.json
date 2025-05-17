@@ -215,5 +215,110 @@
     "title": "Take_homeExercise1",
     "section": "",
     "text": "gender_ratio &lt;- data %&gt;%\n  group_by(PA, Sex) %&gt;%\n  summarise(Pop = sum(Pop), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = Sex, values_from = Pop) %&gt;%\n  filter(!is.na(Males) & !is.na(Females) & Females &gt; 0) %&gt;%  \n  mutate(Gender_Ratio = Males / Females)\n\nggplot(gender_ratio, aes(x = reorder(PA, Gender_Ratio), y = Gender_Ratio)) +\n  geom_col(fill = \"purple\") +\n  coord_flip() +\n  labs(title = \"Gender Ratio (Males/Females) by Planning Area (2024)\",\n       x = \"Planning Area\", y = \"Gender Ratio\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nThis visualisation illustrates the gender ratio (males divided by females) across various planning areas in Singapore for the year 2024. A gender ratio of 1 indicates equal numbers of males and females, while a value below 1 suggests a higher female population. The horizontal bar chart makes it easy to compare the relative gender balance across regions. We observe that most planning areas have a gender ratio below 1, implying that females outnumber males in many parts of Singapore. A few regions, however, have ratios approaching or above 1, indicating a more balanced or male-dominant population. This insight can be useful for policy-making, healthcare planning, and social programs that require demographic balancing. The chart uses a simple color scheme and horizontal layout to handle long planning area names and allow better readability. It is also helpful in spotting outliers or regions with a skewed gender ratio quickly."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-load-your-csv-files",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-load-your-csv-files",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Load your CSV files",
+    "text": "Step 1: Load your CSV files"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-check-structure",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-check-structure",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Check structure",
+    "text": "Step 2: Check structure\n\nnodes &lt;- read_csv(\"C:\\\\RBSantigari-MITB\\\\ISSS608-VAA\\\\TakehomeExercises\\\\Take_homeExercise2\\\\data\\\\Nodes_Table.csv\")\n\nRows: 17412 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): Node Type, name, genre, stage_name\ndbl (4): release_date, id, written_date, notoriety_date\nlgl (2): single, notable\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nlinks &lt;- read_csv(\"C:\\\\RBSantigari-MITB\\\\ISSS608-VAA\\\\TakehomeExercises\\\\Take_homeExercise2\\\\data\\\\Links_Table.csv\")\n\nRows: 37857 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): Edge Type\ndbl (3): source, target, key\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nglimpse(nodes)\n\nRows: 17,412\nColumns: 10\n$ `Node Type`    &lt;chr&gt; \"Song\", \"Person\", \"Person\", \"Person\", \"RecordLabel\", \"S…\n$ name           &lt;chr&gt; \"Breaking These Chains\", \"Carlos Duffy\", \"Min Qin\", \"Xi…\n$ single         &lt;lgl&gt; TRUE, NA, NA, NA, NA, FALSE, NA, NA, NA, NA, TRUE, NA, …\n$ release_date   &lt;dbl&gt; 2017, NA, NA, NA, NA, 2026, NA, NA, NA, NA, 2020, NA, N…\n$ genre          &lt;chr&gt; \"Oceanus Folk\", NA, NA, NA, NA, \"Lo-Fi Electronica\", NA…\n$ notable        &lt;lgl&gt; TRUE, NA, NA, NA, NA, TRUE, NA, NA, NA, NA, TRUE, NA, N…\n$ id             &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ written_date   &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 2020, NA, NA, N…\n$ stage_name     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…\n$ notoriety_date &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…\n\nglimpse(links)\n\nRows: 37,857\nColumns: 4\n$ `Edge Type` &lt;chr&gt; \"InterpolatesFrom\", \"RecordedBy\", \"PerformerOf\", \"Composer…\n$ source      &lt;dbl&gt; 0, 0, 1, 1, 2, 2, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5…\n$ target      &lt;dbl&gt; 1841, 4, 0, 16180, 0, 16180, 0, 5088, 14332, 11677, 2479, …\n$ key         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n\n\n\nFind Sailor Shift in the nodes\n\n# Find Sailor Shift in the nodes\nsailor &lt;- nodes %&gt;%\n  filter(name == \"Sailor Shift\")\n\nsailor\n\n# A tibble: 1 × 10\n  `Node Type` name         single release_date genre notable    id written_date\n  &lt;chr&gt;       &lt;chr&gt;        &lt;lgl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;   &lt;dbl&gt;        &lt;dbl&gt;\n1 Person      Sailor Shift NA               NA &lt;NA&gt;  NA      17255           NA\n# ℹ 2 more variables: stage_name &lt;chr&gt;, notoriety_date &lt;dbl&gt;\n\n\n\n\nSave Sailor’s ID\n\n\nGet all edges where Sailor is either source or target\n\n\nView result\n\nsailor_id &lt;- 17255\n\n\nsailor_edges &lt;- links %&gt;%\n  filter(source == sailor_id | target == sailor_id)\n\n\nglimpse(sailor_edges)\n\nRows: 60\nColumns: 4\n$ `Edge Type` &lt;chr&gt; \"InStyleOf\", \"LyricalReferenceTo\", \"InterpolatesFrom\", \"In…\n$ source      &lt;dbl&gt; 17022, 17032, 17063, 17110, 17126, 17155, 17255, 17255, 17…\n$ target      &lt;dbl&gt; 17255, 17255, 17255, 17255, 17255, 17255, 16961, 16989, 16…\n$ key         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n\n\n\nconnected_ids &lt;- unique(c(sailor_edges$source, sailor_edges$target))\nconnected_ids &lt;- connected_ids[connected_ids != sailor_id]"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#find-sailor-shift-in-the-nodes",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#find-sailor-shift-in-the-nodes",
+    "title": "Take_homeExercise2",
+    "section": "3.1 Find Sailor Shift in the Nodes",
+    "text": "3.1 Find Sailor Shift in the Nodes\n\nsailor &lt;- nodes %&gt;%\n  filter(name == \"Sailor Shift\")\n\nsailor\n\n# A tibble: 1 × 10\n  `Node Type` name         single release_date genre notable    id written_date\n  &lt;chr&gt;       &lt;chr&gt;        &lt;lgl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;   &lt;dbl&gt;        &lt;dbl&gt;\n1 Person      Sailor Shift NA               NA &lt;NA&gt;  NA      17255           NA\n# ℹ 2 more variables: stage_name &lt;chr&gt;, notoriety_date &lt;dbl&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#save-sailors-id",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#save-sailors-id",
+    "title": "Take_homeExercise2",
+    "section": "3.2 Save Sailor’s ID",
+    "text": "3.2 Save Sailor’s ID\n\nsailor_id &lt;- 17255"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-all-edges-where-sailor-is-either-source-or-target",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-all-edges-where-sailor-is-either-source-or-target",
+    "title": "Take_homeExercise2",
+    "section": "Get all edges where Sailor is either source or target",
+    "text": "Get all edges where Sailor is either source or target\n\nView result\n\nsailor_id &lt;- 17255\n\n\nsailor_edges &lt;- links %&gt;%\n  filter(source == sailor_id | target == sailor_id)\n\n\nglimpse(sailor_edges)\n\nRows: 60\nColumns: 4\n$ `Edge Type` &lt;chr&gt; \"InStyleOf\", \"LyricalReferenceTo\", \"InterpolatesFrom\", \"In…\n$ source      &lt;dbl&gt; 17022, 17032, 17063, 17110, 17126, 17155, 17255, 17255, 17…\n$ target      &lt;dbl&gt; 17255, 17255, 17255, 17255, 17255, 17255, 16961, 16989, 16…\n$ key         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n\n\n\nconnected_ids &lt;- unique(c(sailor_edges$source, sailor_edges$target))\nconnected_ids &lt;- connected_ids[connected_ids != sailor_id]"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#view-result",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#view-result",
+    "title": "Take_homeExercise2",
+    "section": "View result",
+    "text": "View result\n\nsailor_id &lt;- 17255\n\n\nsailor_edges &lt;- links %&gt;%\n  filter(source == sailor_id | target == sailor_id)\n\n\nglimpse(sailor_edges)\n\nRows: 60\nColumns: 4\n$ `Edge Type` &lt;chr&gt; \"InStyleOf\", \"LyricalReferenceTo\", \"InterpolatesFrom\", \"In…\n$ source      &lt;dbl&gt; 17022, 17032, 17063, 17110, 17126, 17155, 17255, 17255, 17…\n$ target      &lt;dbl&gt; 17255, 17255, 17255, 17255, 17255, 17255, 16961, 16989, 16…\n$ key         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n\n\n\nconnected_ids &lt;- unique(c(sailor_edges$source, sailor_edges$target))\nconnected_ids &lt;- connected_ids[connected_ids != sailor_id]\n\n\nView sample rows\n\nconnected_nodes &lt;- nodes %&gt;%\n  filter(id %in% connected_ids) %&gt;%\n  select(id, `Node Type`, name, genre)\n\nhead(connected_nodes, 10)  # View sample rows\n\n# A tibble: 10 × 4\n      id `Node Type`  name                                   genre       \n   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;                                  &lt;chr&gt;       \n 1 16961 Album        Neon Heartbeat                         Synthwave   \n 2 16989 Album        Ballads for the End of Time            Oceanus Folk\n 3 16999 Album        Melancholy Circuitry                   Americana   \n 4 17022 MusicalGroup Cassette Future                        &lt;NA&gt;        \n 5 17032 MusicalGroup Silver Veil                            &lt;NA&gt;        \n 6 17047 Album        Drifting Between the Stars and the Sea Oceanus Folk\n 7 17048 Album        Artificial Sunsets                     Oceanus Folk\n 8 17049 Album        Electric Reverie                       Oceanus Folk\n 9 17063 MusicalGroup The Phantom Operators                  &lt;NA&gt;        \n10 17110 MusicalGroup The Hollow Monarchs                    &lt;NA&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#clean-connected-nodes-remove-rows-with-missing-id-or-name",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#clean-connected-nodes-remove-rows-with-missing-id-or-name",
+    "title": "Take_homeExercise2",
+    "section": "Clean connected nodes: remove rows with missing id or name",
+    "text": "Clean connected nodes: remove rows with missing id or name\n\nconnected_nodes &lt;- connected_nodes %&gt;%\n  filter(!is.na(id) & !is.na(name))\n\n\nconnected_links &lt;- links %&gt;%\n  filter(source %in% connected_nodes$id | target %in% connected_nodes$id) %&gt;%\n  filter(!is.na(source) & !is.na(target) & !is.na(`Edge Type`))\n\n\nCheck for remaining NA rows\n\nsum(is.na(connected_nodes$id))      # Should be 0\n\n[1] 0\n\nsum(is.na(connected_nodes$name))    # Should be 0\n\n[1] 0\n\nsum(is.na(connected_links$source))  # Should be 0\n\n[1] 0\n\nsum(is.na(connected_links$target))  # Should be 0\n\n[1] 0\n\nsum(is.na(connected_links$`Edge Type`))  # Should be 0\n\n[1] 0"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#ensure-source-and-target-are-integers",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#ensure-source-and-target-are-integers",
+    "title": "Take_homeExercise2",
+    "section": "Ensure source and target are integers",
+    "text": "Ensure source and target are integers\n\nconnected_links &lt;- connected_links %&gt;%\n  mutate(\n    source = as.integer(source),\n    target = as.integer(target)\n  )\n\n\nGet the final list of valid node IDs\n\n\nFilter links where both source and target exist in valid node list\n\nvalid_ids &lt;- connected_nodes$id\n\n\nconnected_links &lt;- connected_links %&gt;%\n  filter(source %in% valid_ids & target %in% valid_ids)"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-the-final-list-of-valid-node-ids",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-the-final-list-of-valid-node-ids",
+    "title": "Take_homeExercise2",
+    "section": "Get the final list of valid node IDs",
+    "text": "Get the final list of valid node IDs"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#filter-links-where-both-source-and-target-exist-in-valid-node-list",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#filter-links-where-both-source-and-target-exist-in-valid-node-list",
+    "title": "Take_homeExercise2",
+    "section": "Filter links where both source and target exist in valid node list",
+    "text": "Filter links where both source and target exist in valid node list\n\nvalid_ids &lt;- connected_nodes$id\n\n\nconnected_links &lt;- connected_links %&gt;%\n  filter(source %in% valid_ids & target %in% valid_ids)"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#view-sample-rows",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#view-sample-rows",
+    "title": "Take_homeExercise2",
+    "section": "4.1 View Sample Rows",
+    "text": "4.1 View Sample Rows\n\nconnected_nodes &lt;- nodes %&gt;%\n  filter(id %in% connected_ids) %&gt;%\n  select(id, `Node Type`, name, genre)\n\nhead(connected_nodes, 10)\n\n# A tibble: 10 × 4\n      id `Node Type`  name                                   genre       \n   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;                                  &lt;chr&gt;       \n 1 16961 Album        Neon Heartbeat                         Synthwave   \n 2 16989 Album        Ballads for the End of Time            Oceanus Folk\n 3 16999 Album        Melancholy Circuitry                   Americana   \n 4 17022 MusicalGroup Cassette Future                        &lt;NA&gt;        \n 5 17032 MusicalGroup Silver Veil                            &lt;NA&gt;        \n 6 17047 Album        Drifting Between the Stars and the Sea Oceanus Folk\n 7 17048 Album        Artificial Sunsets                     Oceanus Folk\n 8 17049 Album        Electric Reverie                       Oceanus Folk\n 9 17063 MusicalGroup The Phantom Operators                  &lt;NA&gt;        \n10 17110 MusicalGroup The Hollow Monarchs                    &lt;NA&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#check-for-remaining-na-rows",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#check-for-remaining-na-rows",
+    "title": "Take_homeExercise2",
+    "section": "Check for remaining NA rows",
+    "text": "Check for remaining NA rows\n\nsum(is.na(connected_nodes$id))      # Should be 0\n\n[1] 0\n\nsum(is.na(connected_nodes$name))    # Should be 0\n\n[1] 0\n\nsum(is.na(connected_links$source))  # Should be 0\n\n[1] 0\n\nsum(is.na(connected_links$target))  # Should be 0\n\n[1] 0\n\nsum(is.na(connected_links$`Edge Type`))  # Should be 0\n\n[1] 0"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-all-edges-where-sailor-is-source-or-target",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-all-edges-where-sailor-is-source-or-target",
+    "title": "Take_homeExercise2",
+    "section": "3.3 Get All Edges Where Sailor is Source or Target",
+    "text": "3.3 Get All Edges Where Sailor is Source or Target\n\nsailor_edges &lt;- links %&gt;%\n  filter(source == sailor_id | target == sailor_id)\n\nglimpse(sailor_edges)\n\nRows: 60\nColumns: 4\n$ `Edge Type` &lt;chr&gt; \"InStyleOf\", \"LyricalReferenceTo\", \"InterpolatesFrom\", \"In…\n$ source      &lt;dbl&gt; 17022, 17032, 17063, 17110, 17126, 17155, 17255, 17255, 17…\n$ target      &lt;dbl&gt; 17255, 17255, 17255, 17255, 17255, 17255, 16961, 16989, 16…\n$ key         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-connected-ids-excluding-sailor-herself",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#get-connected-ids-excluding-sailor-herself",
+    "title": "Take_homeExercise2",
+    "section": "3.4 Get Connected IDs (Excluding Sailor Herself)",
+    "text": "3.4 Get Connected IDs (Excluding Sailor Herself)\n\nconnected_ids &lt;- unique(c(sailor_edges$source, sailor_edges$target))\nconnected_ids &lt;- connected_ids[connected_ids != sailor_id]"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#clean-connected-nodes-remove-na-in-idname",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#clean-connected-nodes-remove-na-in-idname",
+    "title": "Take_homeExercise2",
+    "section": "4.2 Clean Connected Nodes (Remove NA in ID/Name)",
+    "text": "4.2 Clean Connected Nodes (Remove NA in ID/Name)\n\nconnected_nodes &lt;- connected_nodes %&gt;%\n  filter(!is.na(id) & !is.na(name))"
   }
 ]
