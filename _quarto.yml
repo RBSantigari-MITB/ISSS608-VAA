@@ -31,6 +31,10 @@ website:
             href: TakehomeExercises/Take_homeExercise1/take_homeExercise1.html
           - text: " Take home Exercise 2 "
             href: TakehomeExercises/Take_homeExercise2/take_homeExercise2.html
+      - text: "In Class Exercises"
+        menu:
+          - text: " In class Exercise 5 "
+            href: InClassExercises\In_ClassExercise5\In_classExercise5.html
     right:
       - href: index.qmd
         text: Home
