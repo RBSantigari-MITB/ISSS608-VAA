@@ -25,6 +25,8 @@ website:
             href: HandsOnExercise/Hands_onExercise4(4)/hands_onExercise4_4.html
           - text: "Hands on Exercise 5 : Modelling, Visualising and Analysing Network Data with R "
             href: HandsOnExercise/Hands_onExercise5/hands_onExercise5.html
+          - text: "Hands on Exercise 6 : Visualising and Analysing Time-oriented Data "
+            href: HandsOnExercise/Hands_onExercise6/hands_onExercise6.html
       - text: "Take Home Exercises"
         menu:
           - text: " Take home Exercise 1 "
