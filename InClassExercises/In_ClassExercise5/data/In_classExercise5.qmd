@@ -8,29 +8,35 @@ editor: visual
 ---
 
 # Getting Started
+
 ```{r}
 pacman::p_load(tidyverse, jsonlite,
                tidygraph, ggraph)
 ```
 
 # Importing Kownledge Graph Data
+
 ```{r}
 kg <- fromJSON("C:\\RBSantigari-MITB\\ISSS608-VAA\\InClassExercises\\In_ClassExercise5\\data\\MC1_graph.json")
 ```
 
 ## Inspect structure
+
 ```{r}
 str(kg, max.level = 1)
 ```
 
 # Extracting the edges and nodes tables
+
 ```{r}
 nodes_tbl <- as_tibble(kg$nodes)
 edges_tbl <- as_tibble(kg$links) 
 ```
 
 ## Initial EDA
+
 ### frequency distribution of Edges Type field of edges_tbl.
+
 ```{r}
 ggplot(data = edges_tbl,
        aes(y = `Edge Type`)) +
@@ -38,6 +44,7 @@ ggplot(data = edges_tbl,
 ```
 
 ### frequency distribution of Node Type field of nodes_tbl.
+
 ```{r}
 ggplot(data = nodes_tbl,
        aes(y = `Node Type`)) +
@@ -45,7 +52,9 @@ ggplot(data = nodes_tbl,
 ```
 
 # Creating Knowledge Graph
+
 ## Mapping from node id to row index
+
 ```{r}
 id_map <- tibble(id = nodes_tbl$id,
                  index = seq_len(
@@ -53,6 +62,7 @@ id_map <- tibble(id = nodes_tbl$id,
 ```
 
 ## Map source and target IDs to row indices
+
 ```{r}
 edges_tbl <- edges_tbl %>%
   left_join(id_map, by = c("source" = "id")) %>%
@@ -62,12 +72,14 @@ edges_tbl <- edges_tbl %>%
 ```
 
 ## Filter out any unmatched (invalid) edges
+
 ```{r}
 edges_tbl <- edges_tbl %>%
   filter(!is.na(from), !is.na(to))
 ```
 
 ## Creating tidygraph
+
 ```{r}
 graph <- tbl_graph(nodes = nodes_tbl, 
                    edges = edges_tbl, 
@@ -79,11 +91,13 @@ class(graph)
 ```
 
 # Visualising the knowledge graph
+
 ```{r}
 set.seed(1234)
 ```
 
 ## Visualising the whole graph
+
 ```{r}
 ggraph(graph, layout = "fr") +
   geom_edge_link(alpha = 0.3, 
@@ -97,7 +111,9 @@ ggraph(graph, layout = "fr") +
 ```
 
 ## Visualising the sub-graph
+
 ### Filtering edges to only “MemberOf”
+
 ```{r}
 graph_memberof <- graph %>%
   activate(edges) %>%
@@ -105,6 +121,7 @@ graph_memberof <- graph %>%
 ```
 
 ### Extracting only connected nodes (i.e., used in these edges)
+
 ```{r}
 used_node_indices <- graph_memberof %>%
   activate(edges) %>%
@@ -115,6 +132,7 @@ used_node_indices <- graph_memberof %>%
 ```
 
 ### Keeping only those nodes
+
 ```{r}
 graph_memberof <- graph_memberof %>%
   activate(nodes) %>%
@@ -124,6 +142,7 @@ graph_memberof <- graph_memberof %>%
 ```
 
 ### Plotting the sub-graph
+
 ```{r}
 ggraph(graph_memberof, 
        layout = "fr") +
@@ -136,4 +155,3 @@ ggraph(graph_memberof,
                  size = 2.5) +
   theme_void()
 ```
-
