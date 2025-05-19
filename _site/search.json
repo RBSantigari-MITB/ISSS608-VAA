@@ -254,57 +254,64 @@
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#inspect-structure",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#inspect-structure",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Inspect structure",
     "text": "Inspect structure\n\nstr(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:"
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#initial-eda",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#initial-eda",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Initial EDA",
     "text": "Initial EDA\n\nfrequency distribution of Edges Type field of edges_tbl.\n\nggplot(data = edges_tbl,\n       aes(y = `Edge Type`)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\nfrequency distribution of Node Type field of nodes_tbl.\n\nggplot(data = nodes_tbl,\n       aes(y = `Node Type`)) +\n  geom_bar()"
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#mapping-from-node-id-to-row-index",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#mapping-from-node-id-to-row-index",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Mapping from node id to row index",
     "text": "Mapping from node id to row index\n\nid_map &lt;- tibble(id = nodes_tbl$id,\n                 index = seq_len(\n                   nrow(nodes_tbl)))"
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#map-source-and-target-ids-to-row-indices",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#map-source-and-target-ids-to-row-indices",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Map source and target IDs to row indices",
     "text": "Map source and target IDs to row indices\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to = index)"
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#filter-out-any-unmatched-invalid-edges",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#filter-out-any-unmatched-invalid-edges",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Filter out any unmatched (invalid) edges",
     "text": "Filter out any unmatched (invalid) edges\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from), !is.na(to))"
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#creating-tidygraph",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#creating-tidygraph",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Creating tidygraph",
     "text": "Creating tidygraph\n\ngraph &lt;- tbl_graph(nodes = nodes_tbl, \n                   edges = edges_tbl, \n                   directed = kg$directed)\n\n\nclass(graph)\n\n[1] \"tbl_graph\" \"igraph\""
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#visualising-the-whole-graph",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#visualising-the-whole-graph",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Visualising the whole graph",
     "text": "Visualising the whole graph\n\nggraph(graph, layout = \"fr\") +\n  geom_edge_link(alpha = 0.3, \n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), \n                  size = 4) +\n  geom_node_text(aes(label = name), \n                 repel = TRUE, \n                 size = 2.5) +\n  theme_void()\n\nWarning: ggrepel: 17411 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
   },
   {
     "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html#visualising-the-sub-graph",
     "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html#visualising-the-sub-graph",
-    "title": "Take_homeExercise2",
+    "title": "In_classExercise5",
     "section": "Visualising the sub-graph",
     "text": "Visualising the sub-graph\n\nFiltering edges to only “MemberOf”\n\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"MemberOf\")\n\n\n\nExtracting only connected nodes (i.e., used in these edges)\n\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique()\n\n\n\nKeeping only those nodes\n\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id)  # optional cleanup\n\n\n\nPlotting the sub-graph\n\nggraph(graph_memberof, \n       layout = \"fr\") +\n  geom_edge_link(alpha = 0.5, \n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), \n                  size = 1) +\n  geom_node_text(aes(label = name), \n                 repel = TRUE, \n                 size = 2.5) +\n  theme_void()\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
+    "objectID": "InClassExercises/In_ClassExercise5/In_classExercise5.html",
+    "href": "InClassExercises/In_ClassExercise5/In_classExercise5.html",
+    "title": "In_classExercise5",
+    "section": "",
+    "text": "pacman::p_load(tidyverse, jsonlite,\n               tidygraph, ggraph)"
   }
 ]

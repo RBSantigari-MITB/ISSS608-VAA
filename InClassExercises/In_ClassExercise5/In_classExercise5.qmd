@@ -7,9 +7,6 @@ format:
 editor: visual
 ---
 
-# Take Home Exercis
----
-
 # Getting Started
 ```{r}
 pacman::p_load(tidyverse, jsonlite,
