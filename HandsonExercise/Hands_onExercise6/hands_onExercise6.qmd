@@ -6,8 +6,11 @@ format:
     toc: true
 editor: visual
 ---
+
 # Visualising and Analysing Time-oriented Data
+
 ## Getting Started
+
 ```{r}
 pacman::p_load(scales, viridis, lubridate, ggthemes,
                gridExtra, readxl, knitr, data.table,
@@ -15,18 +18,23 @@ pacman::p_load(scales, viridis, lubridate, ggthemes,
 ```
 
 ## Plotting Calendar Heatmap
+
 ### Importing the data
+
 ```{r}
 attacks <- read_csv("C:\\RBSantigari-MITB\\ISSS608-VAA\\HandsonExercise\\Hands_onExercise6\\data\\eventlog.csv")
 ```
 
 ### Examining the data structure
+
 ```{r}
 kable(head(attacks))
 ```
 
 ### Data Preparation
+
 #### Step 1: Deriving weekday and hour of day fields
+
 ```{r}
 make_hr_wkday <- function(ts, sc, tz) {
   real_times <- ymd_hms(ts, 
@@ -40,6 +48,7 @@ make_hr_wkday <- function(ts, sc, tz) {
 ```
 
 #### Step 2: Deriving the attacks tibble data frame
+
 ```{r}
 wkday_levels <- c('Saturday', 'Friday', 
                   'Thursday', 'Wednesday', 
@@ -63,6 +72,7 @@ kable(head(attacks))
 ```
 
 ### Building the Calendar Heatmaps
+
 ```{r}
 grouped <- attacks %>% 
   count(wkday, hour) %>% 
@@ -90,8 +100,11 @@ theme(axis.ticks = element_blank(),
 ```
 
 ### Building Multiple Calendar Heatmaps
+
 ### Plotting Multiple Calendar Heatmaps
+
 #### Step 1: Deriving attack by country object
+
 ```{r}
 attacks_by_country <- count(
   attacks, source_country) %>%
@@ -100,6 +113,7 @@ attacks_by_country <- count(
 ```
 
 #### Step 2: Preparing the tidy data frame
+
 ```{r}
 top4 <- attacks_by_country$source_country[1:4]
 top4_attacks <- attacks %>%
@@ -112,6 +126,7 @@ top4_attacks <- attacks %>%
 ```
 
 ### Plotting Multiple Calendar Heatmaps
+
 ```{r}
 ggplot(top4_attacks, 
        aes(hour, 
@@ -135,12 +150,15 @@ ggplot(top4_attacks,
 ```
 
 ## Plotting Cycle Plot
+
 ### Step 1: Data Import
+
 ```{r}
 air <- read_excel("C:\\RBSantigari-MITB\\ISSS608-VAA\\HandsonExercise\\Hands_onExercise6\\data\\arrivals_by_air.xlsx")
 ```
 
 ### Step 2: Deriving month and year fields
+
 ```{r}
 air$month <- factor(month(air$`Month-Year`), 
                     levels=1:12, 
@@ -150,6 +168,7 @@ air$year <- year(ymd(air$`Month-Year`))
 ```
 
 ### Step 3: Extracting the target country
+
 ```{r}
 Vietnam <- air %>% 
   select(`Vietnam`, 
@@ -159,6 +178,7 @@ Vietnam <- air %>%
 ```
 
 ### Step 4: Computing year average arrivals by month
+
 ```{r}
 hline.data <- Vietnam %>% 
   group_by(month) %>%
@@ -166,6 +186,7 @@ hline.data <- Vietnam %>%
 ```
 
 ### Step 5: Plotting the cycle plot
+
 ```{r}
 ggplot() + 
   geom_line(data=Vietnam,
@@ -187,12 +208,15 @@ ggplot() +
 ```
 
 ## Plotting Slopegraph
+
 ### Step 1: Data Import
+
 ```{r}
 rice <- read_csv("C:\\RBSantigari-MITB\\ISSS608-VAA\\HandsonExercise\\Hands_onExercise6\\data\\rice.csv")
 ```
 
 ### Step 2: Plotting the slopegraph
+
 ```{r}
 rice %>% 
   mutate(Year = factor(Year)) %>%
