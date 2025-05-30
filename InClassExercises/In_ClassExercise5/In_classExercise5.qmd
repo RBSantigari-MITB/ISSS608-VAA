@@ -17,7 +17,7 @@ pacman::p_load(tidyverse, jsonlite,
 # Importing Kownledge Graph Data
 
 ```{r}
-kg <- fromJSON("C:\\RBSantigari-MITB\\ISSS608-VAA\\InClassExercises\\In_ClassExercise5\\data\\MC1_graph.json")
+kg <- fromJSON("data/MC1_graph.json")
 ```
 
 ## Inspect structure
@@ -155,3 +155,4 @@ ggraph(graph_memberof,
                  size = 2.5) +
   theme_void()
 ```
+
