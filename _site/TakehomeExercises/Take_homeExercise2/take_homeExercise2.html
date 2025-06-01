@@ -250,6 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#extracting-only-connected-nodes-i.e.-used-in-these-edges" id="toc-extracting-only-connected-nodes-i.e.-used-in-these-edges" class="nav-link" data-scroll-target="#extracting-only-connected-nodes-i.e.-used-in-these-edges">Extracting only connected nodes (i.e., used in these edges)</a></li>
   <li><a href="#keeping-only-those-nodes" id="toc-keeping-only-those-nodes" class="nav-link" data-scroll-target="#keeping-only-those-nodes">Keeping only those nodes</a></li>
   <li><a href="#plotting-the-sub-graph" id="toc-plotting-the-sub-graph" class="nav-link" data-scroll-target="#plotting-the-sub-graph">Plotting the sub-graph</a></li>
+  </ul></li>
   <li><a href="#identify-sailor-shifts-node-id" id="toc-identify-sailor-shifts-node-id" class="nav-link" data-scroll-target="#identify-sailor-shifts-node-id">Identify Sailor Shift’s Node ID</a></li>
   </ul></li>
   <li><a href="#who-has-she-been-most-influenced-by-over-time" id="toc-who-has-she-been-most-influenced-by-over-time" class="nav-link" data-scroll-target="#who-has-she-been-most-influenced-by-over-time">Who has she been most influenced by over time?</a>
@@ -305,7 +306,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#step-1-get-oceanus-folk-songs-that-are-frequently-influenced" id="toc-step-1-get-oceanus-folk-songs-that-are-frequently-influenced" class="nav-link" data-scroll-target="#step-1-get-oceanus-folk-songs-that-are-frequently-influenced">Step 1: Get Oceanus Folk songs that are frequently influenced</a></li>
   <li><a href="#step-2-find-the-lyricists-of-those-songs" id="toc-step-2-find-the-lyricists-of-those-songs" class="nav-link" data-scroll-target="#step-2-find-the-lyricists-of-those-songs">Step 2: Find the lyricists of those songs</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -534,17 +534,18 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </section>
-<section id="identify-sailor-shifts-node-id" class="level3">
-<h3 class="anchored" data-anchor-id="identify-sailor-shifts-node-id">Identify Sailor Shift’s Node ID</h3>
+</section>
+<section id="identify-sailor-shifts-node-id" class="level2">
+<h2 class="anchored" data-anchor-id="identify-sailor-shifts-node-id">Identify Sailor Shift’s Node ID</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sailor_id <span class="ot">&lt;-</span> <span class="dv">17255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="who-has-she-been-most-influenced-by-over-time" class="level2">
-<h2 class="anchored" data-anchor-id="who-has-she-been-most-influenced-by-over-time">Who has she been most influenced by over time?</h2>
-<section id="step-1-find-incoming-influencedby-edges-to-sailor-shift." class="level3">
-<h3 class="anchored" data-anchor-id="step-1-find-incoming-influencedby-edges-to-sailor-shift.">Step 1: Find incoming “influencedBy” edges to Sailor Shift.</h3>
+<section id="who-has-she-been-most-influenced-by-over-time" class="level1">
+<h1>Who has she been most influenced by over time?</h1>
+<section id="step-1-find-incoming-influencedby-edges-to-sailor-shift." class="level2">
+<h2 class="anchored" data-anchor-id="step-1-find-incoming-influencedby-edges-to-sailor-shift.">Step 1: Find incoming “influencedBy” edges to Sailor Shift.</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>influencers <span class="ot">&lt;-</span> graph <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span></span>
@@ -574,8 +575,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-visualize" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-visualize">Step 2: Visualize</h3>
+<section id="step-2-visualize" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-visualize">Step 2: Visualize</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>graph_influencers <span class="ot">&lt;-</span> graph <span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span></span>
@@ -603,10 +604,10 @@ Caused by warning:
 </div>
 </section>
 </section>
-<section id="who-has-she-collaborated-with-or-influenced" class="level2">
-<h2 class="anchored" data-anchor-id="who-has-she-collaborated-with-or-influenced">Who has she collaborated with or influenced?</h2>
-<section id="find-outgoing-edges-of-type-collaboratedwith-or-influencedby" class="level3">
-<h3 class="anchored" data-anchor-id="find-outgoing-edges-of-type-collaboratedwith-or-influencedby">Find outgoing edges of type “collaboratedWith” or “influencedBy”</h3>
+<section id="who-has-she-collaborated-with-or-influenced" class="level1">
+<h1>Who has she collaborated with or influenced?</h1>
+<section id="find-outgoing-edges-of-type-collaboratedwith-or-influencedby" class="level2">
+<h2 class="anchored" data-anchor-id="find-outgoing-edges-of-type-collaboratedwith-or-influencedby">Find outgoing edges of type “collaboratedWith” or “influencedBy”</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>collab_or_influenced <span class="ot">&lt;-</span> graph <span class="sc">%&gt;%</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span></span>
@@ -637,10 +638,10 @@ Caused by warning:
 <p>Based on the analysis of the knowledge graph data, Sailor Shift (node ID: 17255) does not have any direct “collaborated With” or “influenced By” relationships with other nodes. However, she maintains significant musical connections via edge types such as “Lyricist Of”, “Lyrical Reference To”, “Interpolates From”, and “In Style Of”. These suggest that her influence may be stylistic or lyrical, rather than formal collaborations or direct inspiration as per the dataset’s encoded relationships. Hence, Sailor Shift’s role appears more implicit or thematic rather than through conventional influence or joint work.</p>
 </section>
 </section>
-<section id="how-has-sailor-shift-influenced-collaborators-of-the-broader-oceanus-folk-community" class="level2">
-<h2 class="anchored" data-anchor-id="how-has-sailor-shift-influenced-collaborators-of-the-broader-oceanus-folk-community">How has Sailor Shift influenced collaborators of the broader Oceanus Folk community?</h2>
-<section id="step-1-identify-all-nodes-sailor-shift-connects-to" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-identify-all-nodes-sailor-shift-connects-to">Step 1: Identify all nodes Sailor Shift connects to</h3>
+<section id="how-has-sailor-shift-influenced-collaborators-of-the-broader-oceanus-folk-community" class="level1">
+<h1>How has Sailor Shift influenced collaborators of the broader Oceanus Folk community?</h1>
+<section id="step-1-identify-all-nodes-sailor-shift-connects-to" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-identify-all-nodes-sailor-shift-connects-to">Step 1: Identify all nodes Sailor Shift connects to</h2>
 <p>We already know Sailor Shift connects through these edge types: “LyricistOf” “InStyleOf” “LyricalReferenceTo” “InterpolatesFrom” So we extract all target nodes where Sailor Shift is the source:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>connected_ids <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
@@ -670,8 +671,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-filter-those-connected-to-oceanus-folk" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-filter-those-connected-to-oceanus-folk">Step 2: Filter those connected to Oceanus Folk</h3>
+<section id="step-2-filter-those-connected-to-oceanus-folk" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-filter-those-connected-to-oceanus-folk">Step 2: Filter those connected to Oceanus Folk</h2>
 <p>Now we narrow down: from the nodes she’s connected to, who belongs to the Oceanus Folk genre?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>oceanus_connected <span class="ot">&lt;-</span> connected_nodes <span class="sc">%&gt;%</span></span>
@@ -697,8 +698,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-3-visualize-her-influence-on-oceanus-folk" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-visualize-her-influence-on-oceanus-folk">Step 3: Visualize her influence on Oceanus Folk</h3>
+<section id="step-3-visualize-her-influence-on-oceanus-folk" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-visualize-her-influence-on-oceanus-folk">Step 3: Visualize her influence on Oceanus Folk</h2>
 <p>We now build a subgraph of Sailor Shift + connected Oceanus Folk nodes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>graph_sailor_oceanus <span class="ot">&lt;-</span> graph <span class="sc">%&gt;%</span></span>
@@ -723,10 +724,10 @@ Caused by warning:
 <p>Though Sailor Shift has no explicit “influencedBy” or “collaboratedWith” edges in the knowledge graph, she is connected to several artists and songs in the Oceanus Folk genre via edges like “LyricistOf”, “InStyleOf”, and “InterpolatesFrom”. These thematic and creative connections suggest her artistic influence is embedded in the style, lyrics, and composition techniques of Oceanus Folk music — reinforcing her role as an indirect influencer and creative contributor in the genre’s development.</p>
 </section>
 </section>
-<section id="develop-visualizations-that-illustrate-how-the-influence-of-oceanus-folk-has-spread-through-the-musical-world." class="level2">
-<h2 class="anchored" data-anchor-id="develop-visualizations-that-illustrate-how-the-influence-of-oceanus-folk-has-spread-through-the-musical-world.">Develop visualizations that illustrate how the influence of Oceanus Folk has spread through the musical world.</h2>
-<section id="step-1-find-all-nodes-with-genre-oceanus-folk" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-find-all-nodes-with-genre-oceanus-folk">Step 1: Find all nodes with genre = “Oceanus Folk”</h3>
+<section id="develop-visualizations-that-illustrate-how-the-influence-of-oceanus-folk-has-spread-through-the-musical-world." class="level1">
+<h1>Develop visualizations that illustrate how the influence of Oceanus Folk has spread through the musical world.</h1>
+<section id="step-1-find-all-nodes-with-genre-oceanus-folk" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-find-all-nodes-with-genre-oceanus-folk">Step 1: Find all nodes with genre = “Oceanus Folk”</h2>
 <p>This gives us all songs/artists classified as part of the Oceanus Folk movement</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>oceanus_nodes <span class="ot">&lt;-</span> nodes_tbl <span class="sc">%&gt;%</span></span>
@@ -752,8 +753,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-see-how-many-other-nodes-are-connected-influenced-by-these" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-see-how-many-other-nodes-are-connected-influenced-by-these">Step 2: See how many other nodes are connected (influenced) by these</h3>
+<section id="step-2-see-how-many-other-nodes-are-connected-influenced-by-these" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-see-how-many-other-nodes-are-connected-influenced-by-these">Step 2: See how many other nodes are connected (influenced) by these</h2>
 <p>We check if Oceanus Folk nodes are sources in “influencedBy”, “InStyleOf”, or “InterpolatesFrom” edges:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>oceanus_ids <span class="ot">&lt;-</span> oceanus_nodes<span class="sc">$</span>id</span>
@@ -780,8 +781,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-3-visualize-the-spread-of-oceanus-folk-over-time" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-visualize-the-spread-of-oceanus-folk-over-time">Step 3: Visualize the spread of Oceanus Folk over time</h3>
+<section id="step-3-visualize-the-spread-of-oceanus-folk-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-visualize-the-spread-of-oceanus-folk-over-time">Step 3: Visualize the spread of Oceanus Folk over time</h2>
 <p>We plot a timeline of influenced nodes, grouped by year or genre:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean date (some may be NA or characters)</span></span>
@@ -806,10 +807,10 @@ Caused by warning:
 <p>The Oceanus Folk genre has had a measurable and growing influence on the broader musical community. By tracing outgoing edges such as “influencedBy”, “InStyleOf”, and “InterpolatesFrom” from Oceanus Folk nodes, we find a diverse group of artists and songs that have incorporated its themes and styles. The time-series visualization shows a gradual and sustained spread — with notable growth starting around 1990, suggesting rising popularity and cultural reach.</p>
 </section>
 </section>
-<section id="was-this-influence-intermittent-or-did-it-have-a-gradual-rise" class="level2">
-<h2 class="anchored" data-anchor-id="was-this-influence-intermittent-or-did-it-have-a-gradual-rise">Was this influence intermittent or did it have a gradual rise?</h2>
-<section id="step-1-get-influenced-nodes-with-release-years" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-get-influenced-nodes-with-release-years">Step 1: Get influenced nodes with release years</h3>
+<section id="was-this-influence-intermittent-or-did-it-have-a-gradual-rise" class="level1">
+<h1>Was this influence intermittent or did it have a gradual rise?</h1>
+<section id="step-1-get-influenced-nodes-with-release-years" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-get-influenced-nodes-with-release-years">Step 1: Get influenced nodes with release years</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>influenced_by_oceanus <span class="sc">%&gt;%</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(release_date)) <span class="sc">%&gt;%</span></span>
@@ -836,8 +837,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-plot-trend-of-influence" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-plot-trend-of-influence">Step 2: Plot trend of influence</h3>
+<section id="step-2-plot-trend-of-influence" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-plot-trend-of-influence">Step 2: Plot trend of influence</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(yearly_influence, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> influence_count)) <span class="sc">+</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
@@ -857,10 +858,10 @@ Caused by warning:
 <p>The trend line of Oceanus Folk’s influence over time indicates a [gradual rise / intermittent pattern]. The number of influenced songs and artists [started picking up around 1990] and continued to grow steadily across subsequent years. This suggests the genre’s organic spread through stylistic or lyrical adoption, rather than isolated or viral bursts. Overall, the influence appears to be [sustained and growing / spiky and episodic], based on the observed temporal distribution.</p>
 </section>
 </section>
-<section id="what-genres-and-top-artists-have-been-most-influenced-by-oceanus-folk" class="level2">
-<h2 class="anchored" data-anchor-id="what-genres-and-top-artists-have-been-most-influenced-by-oceanus-folk">What genres and top artists have been most influenced by Oceanus Folk?</h2>
-<section id="step-1-top-genres-influenced" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-top-genres-influenced">Step 1: Top genres influenced</h3>
+<section id="what-genres-and-top-artists-have-been-most-influenced-by-oceanus-folk" class="level1">
+<h1>What genres and top artists have been most influenced by Oceanus Folk?</h1>
+<section id="step-1-top-genres-influenced" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-top-genres-influenced">Step 1: Top genres influenced</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>influenced_by_oceanus <span class="sc">%&gt;%</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(genre)) <span class="sc">%&gt;%</span></span>
@@ -884,8 +885,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-top-artists-influenced" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-top-artists-influenced">Step 2: Top artists influenced</h3>
+<section id="step-2-top-artists-influenced" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-top-artists-influenced">Step 2: Top artists influenced</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>influenced_by_oceanus <span class="sc">%&gt;%</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Node Type</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Person"</span>, <span class="sc">!</span><span class="fu">is.na</span>(name)) <span class="sc">%&gt;%</span></span>
@@ -953,10 +954,10 @@ Caused by warning:
 <p>The influence of Oceanus Folk has primarily manifested through musical compositions, especially songs, rather than artists as individuals. The most influenced songs include: Ripples and Whispers , Beyond Our Limitations , Destiny’s Call, and others. These results suggest that Oceanus Folk has played a strong stylistic or lyrical role in shaping the creative output of the musical community, reinforcing its impact at the song level across genres.</p>
 </section>
 </section>
-<section id="on-the-converse-how-has-oceanus-folk-changed-with-the-rise-of-sailor-shift-from-which-genres-does-it-draw-most-of-its-contemporary-inspiration" class="level2">
-<h2 class="anchored" data-anchor-id="on-the-converse-how-has-oceanus-folk-changed-with-the-rise-of-sailor-shift-from-which-genres-does-it-draw-most-of-its-contemporary-inspiration">On the converse, how has Oceanus Folk changed with the rise of Sailor Shift? From which genres does it draw most of its contemporary inspiration?</h2>
-<section id="step-1-get-oceanus-folk-songs" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-get-oceanus-folk-songs">Step 1: Get Oceanus Folk songs</h3>
+<section id="on-the-converse-how-has-oceanus-folk-changed-with-the-rise-of-sailor-shift-from-which-genres-does-it-draw-most-of-its-contemporary-inspiration" class="level1">
+<h1>On the converse, how has Oceanus Folk changed with the rise of Sailor Shift? From which genres does it draw most of its contemporary inspiration?</h1>
+<section id="step-1-get-oceanus-folk-songs" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-get-oceanus-folk-songs">Step 1: Get Oceanus Folk songs</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>oceanus_songs <span class="ot">&lt;-</span> nodes_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genre <span class="sc">==</span> <span class="st">"Oceanus Folk"</span>, <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Song"</span>)</span>
@@ -964,8 +965,8 @@ Caused by warning:
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>oceanus_song_ids <span class="ot">&lt;-</span> oceanus_songs<span class="sc">$</span>id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2-find-what-influenced-those-songs" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-find-what-influenced-those-songs">Step 2: Find what influenced those songs</h3>
+<section id="step-2-find-what-influenced-those-songs" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-find-what-influenced-those-songs">Step 2: Find what influenced those songs</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>influences_to_oceanus <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(target <span class="sc">%in%</span> oceanus_song_ids <span class="sc">&amp;</span> <span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"influencedBy"</span>, <span class="st">"InterpolatesFrom"</span>, <span class="st">"LyricalReferenceTo"</span>, <span class="st">"InStyleOf"</span>))</span>
@@ -989,8 +990,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-3-plot-genres-that-inspired-oceanus-folk" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-plot-genres-that-inspired-oceanus-folk">Step 3: Plot genres that inspired Oceanus Folk</h3>
+<section id="step-3-plot-genres-that-inspired-oceanus-folk" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-plot-genres-that-inspired-oceanus-folk">Step 3: Plot genres that inspired Oceanus Folk</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>influencer_nodes <span class="sc">%&gt;%</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(genre)) <span class="sc">%&gt;%</span></span>
@@ -1016,10 +1017,10 @@ Caused by warning:
 <p>The evolution of Oceanus Folk has been shaped by various genres, as seen in the songs that were influenced by other styles and artists. The most prominent genres that inspired Oceanus Folk songs include [e.g., Indie Folk, Synthwave, Pop]. This suggests Oceanus Folk is not an isolated genre but a hybrid, absorbing elements from lyrical storytelling, electronic synth patterns, and indie acoustic traditions. With artists like Sailor Shift contributing through lyrical or stylistic influence (LyricistOf, InStyleOf), Oceanus Folk has grown richer and more diverse.</p>
 </section>
 </section>
-<section id="use-your-visualizations-to-develop-a-profile-of-what-it-means-to-be-a-rising-star-in-the-music-industry." class="level2">
-<h2 class="anchored" data-anchor-id="use-your-visualizations-to-develop-a-profile-of-what-it-means-to-be-a-rising-star-in-the-music-industry.">Use your visualizations to develop a profile of what it means to be a rising star in the music industry.</h2>
-<section id="step-1-identify-artists-with-many-outgoing-influence-edges" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-identify-artists-with-many-outgoing-influence-edges">Step 1: Identify artists with many outgoing influence edges</h3>
+<section id="use-your-visualizations-to-develop-a-profile-of-what-it-means-to-be-a-rising-star-in-the-music-industry." class="level1">
+<h1>Use your visualizations to develop a profile of what it means to be a rising star in the music industry.</h1>
+<section id="step-1-identify-artists-with-many-outgoing-influence-edges" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-identify-artists-with-many-outgoing-influence-edges">Step 1: Identify artists with many outgoing influence edges</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>top_rising_artists <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"influencedBy"</span>, <span class="st">"LyricalReferenceTo"</span>, <span class="st">"InterpolatesFrom"</span>, <span class="st">"InStyleOf"</span>)) <span class="sc">%&gt;%</span></span>
@@ -1038,8 +1039,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-plot-their-influence-count" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-plot-their-influence-count">Step 2: Plot their influence count</h3>
+<section id="step-2-plot-their-influence-count" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-plot-their-influence-count">Step 2: Plot their influence count</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_rising_artists, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(name, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"mediumseagreen"</span>) <span class="sc">+</span></span>
@@ -1056,8 +1057,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-3-timeline-view-optional" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-timeline-view-optional">Step 3: Timeline view (optional)</h3>
+<section id="step-3-timeline-view-optional" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-timeline-view-optional">Step 3: Timeline view (optional)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>edges_with_year <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"influencedBy"</span>, <span class="st">"LyricalReferenceTo"</span>, <span class="st">"InStyleOf"</span>)) <span class="sc">%&gt;%</span></span>
@@ -1086,17 +1087,17 @@ Caused by warning:
 </div>
 </section>
 </section>
-<section id="visualize-the-careers-of-three-artists.-compare-and-contrast-their-rise-in-popularity-and-influence." class="level2">
-<h2 class="anchored" data-anchor-id="visualize-the-careers-of-three-artists.-compare-and-contrast-their-rise-in-popularity-and-influence.">Visualize the careers of three artists. Compare and contrast their rise in popularity and influence.</h2>
+<section id="visualize-the-careers-of-three-artists.-compare-and-contrast-their-rise-in-popularity-and-influence." class="level1">
+<h1>Visualize the careers of three artists. Compare and contrast their rise in popularity and influence.</h1>
 <p>While the original intent of this question was to chart the career trajectories of three artists over time, the dataset lacked sufficient temporal metadata (such as consistent release dates or influence timestamps). Most influence-type relationships were between songs, not people, and few artists had enough associated time-linked records. As an alternative, I examined the number of outgoing influence-related connections for three selected artists: <strong>Daniel O’Connell</strong>, <strong>Claire Holmes</strong>, and <strong>Beatrice Albright</strong>. These edge types included <code>"influencedBy"</code>, <code>"LyricalReferenceTo"</code>, <code>"InterpolatesFrom"</code>, and <code>"InStyleOf"</code>. The following chart represents each artist’s creative reach within the graph dataset based on their number of outgoing influence connections.</p>
-<section id="step-1-select-3-artists-manually" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-select-3-artists-manually">Step 1: Select 3 artists manually</h3>
+<section id="step-1-select-3-artists-manually" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-select-3-artists-manually">Step 1: Select 3 artists manually</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>artist_ids <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">17155</span>, <span class="dv">17349</span>, <span class="dv">17355</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2-compute-influence-count" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-compute-influence-count">Step 2: Compute influence count</h3>
+<section id="step-2-compute-influence-count" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-compute-influence-count">Step 2: Compute influence count</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>influence_count <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"influencedBy"</span>, <span class="st">"LyricalReferenceTo"</span>, <span class="st">"InterpolatesFrom"</span>, <span class="st">"InStyleOf"</span>),</span>
@@ -1105,8 +1106,8 @@ Caused by warning:
 <span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(name, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-3-plot-influence-comparison" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-plot-influence-comparison">Step 3: Plot influence comparison</h3>
+<section id="step-3-plot-influence-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-plot-influence-comparison">Step 3: Plot influence comparison</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(influence_count, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(name, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"tomato"</span>) <span class="sc">+</span></span>
@@ -1124,10 +1125,10 @@ Caused by warning:
 </div>
 </section>
 </section>
-<section id="using-this-characterization-give-three-predictions-of-who-the-next-oceanus-folk-stars-will-be-over-the-next-five-years." class="level2">
-<h2 class="anchored" data-anchor-id="using-this-characterization-give-three-predictions-of-who-the-next-oceanus-folk-stars-will-be-over-the-next-five-years.">Using this characterization, give three predictions of who the next Oceanus Folk stars will be over the next five years.</h2>
-<section id="step-1-get-oceanus-folk-songs-that-are-frequently-influenced" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-get-oceanus-folk-songs-that-are-frequently-influenced">Step 1: Get Oceanus Folk songs that are frequently influenced</h3>
+<section id="using-this-characterization-give-three-predictions-of-who-the-next-oceanus-folk-stars-will-be-over-the-next-five-years." class="level1">
+<h1>Using this characterization, give three predictions of who the next Oceanus Folk stars will be over the next five years.</h1>
+<section id="step-1-get-oceanus-folk-songs-that-are-frequently-influenced" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-get-oceanus-folk-songs-that-are-frequently-influenced">Step 1: Get Oceanus Folk songs that are frequently influenced</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>top_influenced_oceanus <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"influencedBy"</span>, <span class="st">"InterpolatesFrom"</span>, <span class="st">"LyricalReferenceTo"</span>, <span class="st">"InStyleOf"</span>)) <span class="sc">%&gt;%</span></span>
@@ -1150,8 +1151,8 @@ Caused by warning:
 </div>
 </div>
 </section>
-<section id="step-2-find-the-lyricists-of-those-songs" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-find-the-lyricists-of-those-songs">Step 2: Find the lyricists of those songs</h3>
+<section id="step-2-find-the-lyricists-of-those-songs" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-find-the-lyricists-of-those-songs">Step 2: Find the lyricists of those songs</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>top_targets <span class="ot">&lt;-</span> top_influenced_oceanus<span class="sc">$</span>target  <span class="co"># store outside the pipe</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1175,7 +1176,6 @@ Caused by warning:
 <p>Based on their lyrical contributions to the most influential Oceanus Folk songs, the following artists are predicted to be rising stars in the genre over the next five years : Constance Guibert Eric Beasley Jun Han Wei Ma These artists are positioned to become leading voices in Oceanus Folk as their creative influence continues to grow.</p>
 
 
-</section>
 </section>
 </section>
 

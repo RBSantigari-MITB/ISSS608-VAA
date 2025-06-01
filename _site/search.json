@@ -60,7 +60,7 @@
     "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#visualising-the-sub-graph",
     "title": "Take_homeExercise2",
     "section": "Visualising the sub-graph",
-    "text": "Visualising the sub-graph\n\nFiltering edges to only “MemberOf”\n\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"MemberOf\")\n\n\n\nExtracting only connected nodes (i.e., used in these edges)\n\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique()\n\n\n\nKeeping only those nodes\n\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id)  # optional cleanup\n\n\n\nPlotting the sub-graph\n\nggraph(graph_memberof, \n       layout = \"fr\") +\n  geom_edge_link(alpha = 0.5, \n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), \n                  size = 1) +\n  geom_node_text(aes(label = name), \n                 repel = TRUE, \n                 size = 2.5) +\n  theme_void()\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps\n\n\n\n\n\n\n\n\n\n\n\nIdentify Sailor Shift’s Node ID\n\nsailor_id &lt;- 17255"
+    "text": "Visualising the sub-graph\n\nFiltering edges to only “MemberOf”\n\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"MemberOf\")\n\n\n\nExtracting only connected nodes (i.e., used in these edges)\n\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique()\n\n\n\nKeeping only those nodes\n\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id)  # optional cleanup\n\n\n\nPlotting the sub-graph\n\nggraph(graph_memberof, \n       layout = \"fr\") +\n  geom_edge_link(alpha = 0.5, \n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), \n                  size = 1) +\n  geom_node_text(aes(label = name), \n                 repel = TRUE, \n                 size = 2.5) +\n  theme_void()\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
   },
   {
     "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#who-has-she-been-most-influenced-by-over-time",
@@ -481,5 +481,180 @@
     "title": "Take_homeExercise1",
     "section": "Makeover Version",
     "text": "Makeover Version\n\nmakeover_data &lt;- data %&gt;%\n  filter(PA %in% c(\"Bedok\", \"Tampines\", \"Bukit Timah\", \"Outram\")) %&gt;%\n  group_by(PA, Age, Sex) %&gt;%\n  summarise(Pop = sum(Pop), .groups = \"drop\") %&gt;%\n  mutate(Pop = ifelse(Sex == \"Males\", -Pop, Pop))\n\nggplot(makeover_data, aes(x = Age, y = Pop, fill = Sex)) +\n  geom_bar(stat = \"identity\", width = 0.8) +\n  facet_wrap(~PA, ncol = 2) +\n  coord_flip() +\n  scale_y_continuous(labels = abs) +\n  scale_fill_manual(values = c(\"Males\" = \"#3399FF\", \"Females\" = \"#FF6699\")) +\n  labs(title = \"Improved Population Pyramids of Selected Planning Areas (2024)\",\n       subtitle = \"Standardised layout, corrected axis and color conventions\",\n       x = \"Age Group\", y = \"Population\", fill = \"Sex\") +\n  theme_minimal(base_size = 10) +\n  theme(strip.text = element_text(face = \"bold\"))\n\n\n\n\n\n\n\n\nExplanation of Improvements In this makeover, the missing or overlapping labels were corrected by ensuring clean filtering. Axes are now fixed to allow better population comparisons across areas. Colors were adjusted to align with common conventions (blue for males, pink for females). These changes enhance readability while preserving the original intent."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#identify-sailor-shifts-node-id",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#identify-sailor-shifts-node-id",
+    "title": "Take_homeExercise2",
+    "section": "Identify Sailor Shift’s Node ID",
+    "text": "Identify Sailor Shift’s Node ID\n\nsailor_id &lt;- 17255"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-find-incoming-influencedby-edges-to-sailor-shift.",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-find-incoming-influencedby-edges-to-sailor-shift.",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Find incoming “influencedBy” edges to Sailor Shift.",
+    "text": "Step 1: Find incoming “influencedBy” edges to Sailor Shift.\n\ninfluencers &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"influencedBy\") %&gt;%\n  filter(to == sailor_id) %&gt;%\n  activate(nodes) %&gt;%\n  filter(id %in% .N()$from) %&gt;%\n  select(name, `Node Type`)\n\nWarning: There was 1 warning in `filter()`.\nℹ In argument: `id %in% .N()$from`.\nCaused by warning:\n! Unknown or uninitialised column: `from`.\n\nprint(influencers)\n\n# A tbl_graph: 0 nodes and 0 edges\n#\n# An empty graph\n#\n# Node Data: 0 × 2 (active)\n# ℹ 2 variables: name &lt;chr&gt;, Node Type &lt;chr&gt;\n#\n# Edge Data: 0 × 6\n# ℹ 6 variables: from &lt;int&gt;, to &lt;int&gt;, Edge Type &lt;chr&gt;, source &lt;int&gt;,\n#   target &lt;int&gt;, key &lt;int&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-visualize",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-visualize",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Visualize",
+    "text": "Step 2: Visualize\n\ngraph_influencers &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"influencedBy\", to == sailor_id) %&gt;%\n  activate(nodes) %&gt;%\n  filter(id %in% c(sailor_id, .N()$from))\n\nWarning: There was 1 warning in `filter()`.\nℹ In argument: `id %in% c(sailor_id, .N()$from)`.\nCaused by warning:\n! Unknown or uninitialised column: `from`.\n\nggraph(graph_influencers, layout = \"fr\") +\n  geom_edge_link(aes(label = `Edge Type`), alpha = 0.6) +\n  geom_node_point(aes(color = `Node Type`), size = 4) +\n  geom_node_text(aes(label = name), repel = TRUE) +\n  theme_void()"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#find-outgoing-edges-of-type-collaboratedwith-or-influencedby",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#find-outgoing-edges-of-type-collaboratedwith-or-influencedby",
+    "title": "Take_homeExercise2",
+    "section": "Find outgoing edges of type “collaboratedWith” or “influencedBy”",
+    "text": "Find outgoing edges of type “collaboratedWith” or “influencedBy”\n\ncollab_or_influenced &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter((`Edge Type` %in% c(\"collaboratedWith\", \"influencedBy\")) & from == sailor_id) %&gt;%\n  activate(nodes) %&gt;%\n  filter(id %in% .N()$to) %&gt;%\n  select(name, `Node Type`)\n\nWarning: There was 1 warning in `filter()`.\nℹ In argument: `id %in% .N()$to`.\nCaused by warning:\n! Unknown or uninitialised column: `to`.\n\nprint(collab_or_influenced)\n\n# A tbl_graph: 0 nodes and 0 edges\n#\n# An empty graph\n#\n# Node Data: 0 × 2 (active)\n# ℹ 2 variables: name &lt;chr&gt;, Node Type &lt;chr&gt;\n#\n# Edge Data: 0 × 6\n# ℹ 6 variables: from &lt;int&gt;, to &lt;int&gt;, Edge Type &lt;chr&gt;, source &lt;int&gt;,\n#   target &lt;int&gt;, key &lt;int&gt;\n\n\nBased on the analysis of the knowledge graph data, Sailor Shift (node ID: 17255) does not have any direct “collaborated With” or “influenced By” relationships with other nodes. However, she maintains significant musical connections via edge types such as “Lyricist Of”, “Lyrical Reference To”, “Interpolates From”, and “In Style Of”. These suggest that her influence may be stylistic or lyrical, rather than formal collaborations or direct inspiration as per the dataset’s encoded relationships. Hence, Sailor Shift’s role appears more implicit or thematic rather than through conventional influence or joint work."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-identify-all-nodes-sailor-shift-connects-to",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-identify-all-nodes-sailor-shift-connects-to",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Identify all nodes Sailor Shift connects to",
+    "text": "Step 1: Identify all nodes Sailor Shift connects to\nWe already know Sailor Shift connects through these edge types: “LyricistOf” “InStyleOf” “LyricalReferenceTo” “InterpolatesFrom” So we extract all target nodes where Sailor Shift is the source:\n\nconnected_ids &lt;- edges_tbl %&gt;%\n  filter(source == sailor_id) %&gt;%\n  pull(target)\n\nconnected_nodes &lt;- nodes_tbl %&gt;%\n  filter(id %in% connected_ids)\n\nprint(connected_nodes)\n\n# A tibble: 42 × 10\n   `Node Type`  name        single release_date genre notable    id written_date\n   &lt;chr&gt;        &lt;chr&gt;       &lt;lgl&gt;  &lt;chr&gt;        &lt;chr&gt; &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;       \n 1 Album        Neon Heart… NA     2031         Synt… FALSE   16961 2030        \n 2 Album        Ballads fo… NA     2033         Ocea… TRUE    16989 2032        \n 3 Album        Melancholy… NA     2033         Amer… TRUE    16999 2032        \n 4 Album        Drifting B… NA     2034         Ocea… TRUE    17047 2033        \n 5 Album        Artificial… NA     2035         Ocea… TRUE    17048 2034        \n 6 Album        Electric R… NA     2038         Ocea… TRUE    17049 2037        \n 7 Album        Ballads fo… NA     2037         Ocea… TRUE    17121 2036        \n 8 MusicalGroup The Fiddle… NA     &lt;NA&gt;         &lt;NA&gt;  NA      17192 &lt;NA&gt;        \n 9 Album        Tides of E… NA     2029         Ocea… TRUE    17231 2028        \n10 Album        Hidden Dep… NA     2031         Ocea… TRUE    17252 2030        \n# ℹ 32 more rows\n# ℹ 2 more variables: stage_name &lt;chr&gt;, notoriety_date &lt;chr&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-filter-those-connected-to-oceanus-folk",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-filter-those-connected-to-oceanus-folk",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Filter those connected to Oceanus Folk",
+    "text": "Step 2: Filter those connected to Oceanus Folk\nNow we narrow down: from the nodes she’s connected to, who belongs to the Oceanus Folk genre?\n\noceanus_connected &lt;- connected_nodes %&gt;%\n  filter(genre == \"Oceanus Folk\")\n\nprint(oceanus_connected)\n\n# A tibble: 36 × 10\n   `Node Type` name         single release_date genre notable    id written_date\n   &lt;chr&gt;       &lt;chr&gt;        &lt;lgl&gt;  &lt;chr&gt;        &lt;chr&gt; &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;       \n 1 Album       Ballads for… NA     2033         Ocea… TRUE    16989 2032        \n 2 Album       Drifting Be… NA     2034         Ocea… TRUE    17047 2033        \n 3 Album       Artificial … NA     2035         Ocea… TRUE    17048 2034        \n 4 Album       Electric Re… NA     2038         Ocea… TRUE    17049 2037        \n 5 Album       Ballads for… NA     2037         Ocea… TRUE    17121 2036        \n 6 Album       Tides of Ec… NA     2029         Ocea… TRUE    17231 2028        \n 7 Album       Hidden Dept… NA     2031         Ocea… TRUE    17252 2030        \n 8 Album       The Kelp Fo… NA     2024         Ocea… TRUE    17261 2023        \n 9 Album       Luminescent… NA     2025         Ocea… TRUE    17262 2024        \n10 Album       Shoreline S… NA     2026         Ocea… TRUE    17263 2025        \n# ℹ 26 more rows\n# ℹ 2 more variables: stage_name &lt;chr&gt;, notoriety_date &lt;chr&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-visualize-her-influence-on-oceanus-folk",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-visualize-her-influence-on-oceanus-folk",
+    "title": "Take_homeExercise2",
+    "section": "Step 3: Visualize her influence on Oceanus Folk",
+    "text": "Step 3: Visualize her influence on Oceanus Folk\nWe now build a subgraph of Sailor Shift + connected Oceanus Folk nodes.\n\ngraph_sailor_oceanus &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(from == sailor_id & to %in% oceanus_connected$id) %&gt;%\n  activate(nodes) %&gt;%\n  filter(id %in% c(sailor_id, oceanus_connected$id))\n\nggraph(graph_sailor_oceanus, layout = \"fr\") +\n  geom_edge_link(aes(label = `Edge Type`), alpha = 0.6) +\n  geom_node_point(aes(color = `Node Type`), size = 4) +\n  geom_node_text(aes(label = name), repel = TRUE) +\n  theme_void()\n\n\n\n\n\n\n\n\nThough Sailor Shift has no explicit “influencedBy” or “collaboratedWith” edges in the knowledge graph, she is connected to several artists and songs in the Oceanus Folk genre via edges like “LyricistOf”, “InStyleOf”, and “InterpolatesFrom”. These thematic and creative connections suggest her artistic influence is embedded in the style, lyrics, and composition techniques of Oceanus Folk music — reinforcing her role as an indirect influencer and creative contributor in the genre’s development."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-find-all-nodes-with-genre-oceanus-folk",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-find-all-nodes-with-genre-oceanus-folk",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Find all nodes with genre = “Oceanus Folk”",
+    "text": "Step 1: Find all nodes with genre = “Oceanus Folk”\nThis gives us all songs/artists classified as part of the Oceanus Folk movement\n\noceanus_nodes &lt;- nodes_tbl %&gt;%\n  filter(genre == \"Oceanus Folk\")\n\nprint(oceanus_nodes)\n\n# A tibble: 305 × 10\n   `Node Type` name         single release_date genre notable    id written_date\n   &lt;chr&gt;       &lt;chr&gt;        &lt;lgl&gt;  &lt;chr&gt;        &lt;chr&gt; &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;       \n 1 Song        Breaking Th… TRUE   2017         Ocea… TRUE        0 &lt;NA&gt;        \n 2 Song        Midnight's … TRUE   2013         Ocea… TRUE      553 &lt;NA&gt;        \n 3 Song        Ethereal Wa… TRUE   2023         Ocea… TRUE      720 &lt;NA&gt;        \n 4 Song        Let Me Go, … TRUE   2027         Ocea… TRUE      746 &lt;NA&gt;        \n 5 Song        Mirage of M… TRUE   2023         Ocea… TRUE      757 &lt;NA&gt;        \n 6 Song        Loud and Cl… TRUE   2023         Ocea… TRUE      886 2023        \n 7 Song        Leather Ski… TRUE   2022         Ocea… TRUE     1253 2022        \n 8 Song        Luminous Be… TRUE   2023         Ocea… TRUE     1435 &lt;NA&gt;        \n 9 Song        Perfection'… TRUE   2023         Ocea… TRUE     1489 2023        \n10 Song        Savanna's U… TRUE   2026         Ocea… TRUE     1665 &lt;NA&gt;        \n# ℹ 295 more rows\n# ℹ 2 more variables: stage_name &lt;chr&gt;, notoriety_date &lt;chr&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-see-how-many-other-nodes-are-connected-influenced-by-these",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-see-how-many-other-nodes-are-connected-influenced-by-these",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: See how many other nodes are connected (influenced) by these",
+    "text": "Step 2: See how many other nodes are connected (influenced) by these\nWe check if Oceanus Folk nodes are sources in “influencedBy”, “InStyleOf”, or “InterpolatesFrom” edges:\n\noceanus_ids &lt;- oceanus_nodes$id\ninfluenced_by_oceanus &lt;- edges_tbl %&gt;%\n  filter(source %in% oceanus_ids & `Edge Type` %in% c(\"influencedBy\", \"InStyleOf\", \"InterpolatesFrom\")) %&gt;%\n  left_join(nodes_tbl, by = c(\"target\" = \"id\"))  \n\nprint(influenced_by_oceanus %&gt;% select(name, genre, `Node Type`))\n\n# A tibble: 193 × 3\n   name                              genre        `Node Type`\n   &lt;chr&gt;                             &lt;chr&gt;        &lt;chr&gt;      \n 1 Ripples and Whispers              Indie Folk   Song       \n 2 Fragments of Consciousness        Oceanus Folk Song       \n 3 Clocktower Cadence                Oceanus Folk Song       \n 4 Destiny's Call                    Oceanus Folk Song       \n 5 Manger's Midnight                 Oceanus Folk Song       \n 6 Ripples and Whispers              Indie Folk   Song       \n 7 Choreography of Forbidden Passion Oceanus Folk Song       \n 8 Restless Phantoms                 Oceanus Folk Song       \n 9 First Breath of Desire            Oceanus Folk Song       \n10 Echoes in My Mind                 Synthwave    Song       \n# ℹ 183 more rows"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-visualize-the-spread-of-oceanus-folk-over-time",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-visualize-the-spread-of-oceanus-folk-over-time",
+    "title": "Take_homeExercise2",
+    "section": "Step 3: Visualize the spread of Oceanus Folk over time",
+    "text": "Step 3: Visualize the spread of Oceanus Folk over time\nWe plot a timeline of influenced nodes, grouped by year or genre:\n\n# Clean date (some may be NA or characters)\ninfluenced_by_oceanus %&gt;%\n  filter(!is.na(release_date)) %&gt;%\n  mutate(year = as.numeric(release_date)) %&gt;%\n  group_by(year) %&gt;%\n  summarise(influence_count = n()) %&gt;%\n  ggplot(aes(x = year, y = influence_count)) +\n  geom_line(color = \"steelblue\") +\n  geom_point() +\n  labs(title = \"Spread of Oceanus Folk Influence Over Time\",\n       x = \"Year\", y = \"Number of Influenced Songs/Artists\")\n\n\n\n\n\n\n\n\nThe Oceanus Folk genre has had a measurable and growing influence on the broader musical community. By tracing outgoing edges such as “influencedBy”, “InStyleOf”, and “InterpolatesFrom” from Oceanus Folk nodes, we find a diverse group of artists and songs that have incorporated its themes and styles. The time-series visualization shows a gradual and sustained spread — with notable growth starting around 1990, suggesting rising popularity and cultural reach."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-get-influenced-nodes-with-release-years",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-get-influenced-nodes-with-release-years",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Get influenced nodes with release years",
+    "text": "Step 1: Get influenced nodes with release years\n\ninfluenced_by_oceanus %&gt;%\n  filter(!is.na(release_date)) %&gt;%\n  mutate(year = as.numeric(release_date)) %&gt;%\n  group_by(year) %&gt;%\n  summarise(influence_count = n()) -&gt; yearly_influence\n\nprint(yearly_influence)\n\n# A tibble: 27 × 2\n    year influence_count\n   &lt;dbl&gt;           &lt;int&gt;\n 1  1983               1\n 2  1991               2\n 3  1992               1\n 4  1997               2\n 5  1998               1\n 6  1999               1\n 7  2000               2\n 8  2003               2\n 9  2004              13\n10  2007              12\n# ℹ 17 more rows"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-plot-trend-of-influence",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-plot-trend-of-influence",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Plot trend of influence",
+    "text": "Step 2: Plot trend of influence\n\nggplot(yearly_influence, aes(x = year, y = influence_count)) +\n  geom_line(color = \"darkgreen\", linewidth = 1.2) +\n  geom_point(size = 3, color = \"forestgreen\") +\n  labs(title = \"Oceanus Folk Influence Over Time\",\n       subtitle = \"Based on stylistic and lyrical connections\",\n       x = \"Year\", y = \"Number of Influenced Nodes\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nThe trend line of Oceanus Folk’s influence over time indicates a [gradual rise / intermittent pattern]. The number of influenced songs and artists [started picking up around 1990] and continued to grow steadily across subsequent years. This suggests the genre’s organic spread through stylistic or lyrical adoption, rather than isolated or viral bursts. Overall, the influence appears to be [sustained and growing / spiky and episodic], based on the observed temporal distribution."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-top-genres-influenced",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-top-genres-influenced",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Top genres influenced",
+    "text": "Step 1: Top genres influenced\n\ninfluenced_by_oceanus %&gt;%\n  filter(!is.na(genre)) %&gt;%\n  count(genre, sort = TRUE) %&gt;%\n  top_n(10) %&gt;%\n  ggplot(aes(x = reorder(genre, n), y = n)) +\n  geom_col(fill = \"skyblue\") +\n  coord_flip() +\n  labs(title = \"Top Genres Influenced by Oceanus Folk\",\n       x = \"Genre\", y = \"Number of Influenced Nodes\") +\n  theme_minimal()\n\nSelecting by n"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-top-artists-influenced",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-top-artists-influenced",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Top artists influenced",
+    "text": "Step 2: Top artists influenced\n\ninfluenced_by_oceanus %&gt;%\n  filter(`Node Type` == \"Person\", !is.na(name)) %&gt;%\n  count(name, sort = TRUE) %&gt;%\n  top_n(10) %&gt;%\n  ggplot(aes(x = reorder(name, n), y = n)) +\n  geom_col(fill = \"salmon\") +\n  coord_flip() +\n  labs(title = \"Top Artists Influenced by Oceanus Folk\",\n       x = \"Artist\", y = \"Influence Count\") +\n  theme_minimal()\n\nSelecting by n\n\n\n\n\n\n\n\n\n\n\ninfluenced_by_oceanus %&gt;%\n  select(id = target, name, `Node Type`, genre) %&gt;%\n  head(10)\n\n# A tibble: 10 × 4\n      id name                              `Node Type` genre       \n   &lt;int&gt; &lt;chr&gt;                             &lt;chr&gt;       &lt;chr&gt;       \n 1  1841 Ripples and Whispers              Song        Indie Folk  \n 2  9709 Fragments of Consciousness        Song        Oceanus Folk\n 3  6994 Clocktower Cadence                Song        Oceanus Folk\n 4  3025 Destiny's Call                    Song        Oceanus Folk\n 5 16457 Manger's Midnight                 Song        Oceanus Folk\n 6  1841 Ripples and Whispers              Song        Indie Folk  \n 7 15441 Choreography of Forbidden Passion Song        Oceanus Folk\n 8  8153 Restless Phantoms                 Song        Oceanus Folk\n 9  3730 First Breath of Desire            Song        Oceanus Folk\n10  9702 Echoes in My Mind                 Song        Synthwave   \n\n\n\ninfluenced_by_oceanus %&gt;%\n  filter(`Node Type` == \"Song\", !is.na(name)) %&gt;%\n  count(name, sort = TRUE) %&gt;%\n  top_n(10) %&gt;%\n  ggplot(aes(x = reorder(name, n), y = n)) +\n  geom_col(fill = \"steelblue\") +\n  coord_flip() +\n  labs(title = \"Top Songs Influenced by Oceanus Folk\",\n       x = \"Song\", y = \"Influence Count\") +\n  theme_minimal()\n\nSelecting by n\n\n\n\n\n\n\n\n\n\nThe influence of Oceanus Folk has primarily manifested through musical compositions, especially songs, rather than artists as individuals. The most influenced songs include: Ripples and Whispers , Beyond Our Limitations , Destiny’s Call, and others. These results suggest that Oceanus Folk has played a strong stylistic or lyrical role in shaping the creative output of the musical community, reinforcing its impact at the song level across genres."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-get-oceanus-folk-songs",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-get-oceanus-folk-songs",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Get Oceanus Folk songs",
+    "text": "Step 1: Get Oceanus Folk songs\n\noceanus_songs &lt;- nodes_tbl %&gt;%\n  filter(genre == \"Oceanus Folk\", `Node Type` == \"Song\")\n\noceanus_song_ids &lt;- oceanus_songs$id"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-find-what-influenced-those-songs",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-find-what-influenced-those-songs",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Find what influenced those songs",
+    "text": "Step 2: Find what influenced those songs\n\ninfluences_to_oceanus &lt;- edges_tbl %&gt;%\n  filter(target %in% oceanus_song_ids & `Edge Type` %in% c(\"influencedBy\", \"InterpolatesFrom\", \"LyricalReferenceTo\", \"InStyleOf\"))\n\ninfluencer_nodes &lt;- influences_to_oceanus %&gt;%\n  left_join(nodes_tbl, by = c(\"source\" = \"id\"))\n\nprint(head(influencer_nodes))\n\n# A tibble: 6 × 15\n  `Edge Type`        source target   key  from    to `Node Type` name     single\n  &lt;chr&gt;               &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;lgl&gt; \n1 InStyleOf             196  13324     0   197 13325 Song        Radiant… TRUE  \n2 LyricalReferenceTo    662  16524     0   663 16525 Album       Waiting… NA    \n3 InStyleOf             720   9709     0   721  9710 Song        Etherea… TRUE  \n4 InStyleOf             757   6994     0   758  6995 Song        Mirage … TRUE  \n5 InterpolatesFrom      925  14762     0   926 14763 Song        Liminal… TRUE  \n6 InStyleOf            1069   3025     0  1070  3026 Song        Behind … TRUE  \n# ℹ 6 more variables: release_date &lt;chr&gt;, genre &lt;chr&gt;, notable &lt;lgl&gt;,\n#   written_date &lt;chr&gt;, stage_name &lt;chr&gt;, notoriety_date &lt;chr&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-plot-genres-that-inspired-oceanus-folk",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-plot-genres-that-inspired-oceanus-folk",
+    "title": "Take_homeExercise2",
+    "section": "Step 3: Plot genres that inspired Oceanus Folk",
+    "text": "Step 3: Plot genres that inspired Oceanus Folk\n\ninfluencer_nodes %&gt;%\n  filter(!is.na(genre)) %&gt;%\n  count(genre, sort = TRUE) %&gt;%\n  top_n(10) %&gt;%\n  ggplot(aes(x = reorder(genre, n), y = n)) +\n  geom_col(fill = \"darkorange\") +\n  coord_flip() +\n  labs(title = \"Genres That Inspired Oceanus Folk\",\n       x = \"Genre\", y = \"Influence Count\") +\n  theme_minimal()\n\nSelecting by n\n\n\n\n\n\n\n\n\n\nThe evolution of Oceanus Folk has been shaped by various genres, as seen in the songs that were influenced by other styles and artists. The most prominent genres that inspired Oceanus Folk songs include [e.g., Indie Folk, Synthwave, Pop]. This suggests Oceanus Folk is not an isolated genre but a hybrid, absorbing elements from lyrical storytelling, electronic synth patterns, and indie acoustic traditions. With artists like Sailor Shift contributing through lyrical or stylistic influence (LyricistOf, InStyleOf), Oceanus Folk has grown richer and more diverse."
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-identify-artists-with-many-outgoing-influence-edges",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-identify-artists-with-many-outgoing-influence-edges",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Identify artists with many outgoing influence edges",
+    "text": "Step 1: Identify artists with many outgoing influence edges\n\ntop_rising_artists &lt;- edges_tbl %&gt;%\n  filter(`Edge Type` %in% c(\"influencedBy\", \"LyricalReferenceTo\", \"InterpolatesFrom\", \"InStyleOf\")) %&gt;%\n  group_by(source) %&gt;%\n  tally(sort = TRUE) %&gt;%\n  top_n(10) %&gt;%\n  left_join(nodes_tbl, by = c(\"source\" = \"id\")) %&gt;%\n  filter(`Node Type` == \"Person\")\n\nSelecting by n\n\nprint(top_rising_artists %&gt;% select(name, n, genre))\n\n# A tibble: 0 × 3\n# ℹ 3 variables: name &lt;chr&gt;, n &lt;int&gt;, genre &lt;chr&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-plot-their-influence-count",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-plot-their-influence-count",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Plot their influence count",
+    "text": "Step 2: Plot their influence count\n\nggplot(top_rising_artists, aes(x = reorder(name, n), y = n)) +\n  geom_col(fill = \"mediumseagreen\") +\n  coord_flip() +\n  labs(title = \"Top Rising Stars by Influence Count\",\n       x = \"Artist\", y = \"Number of Influence Connections\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-timeline-view-optional",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-timeline-view-optional",
+    "title": "Take_homeExercise2",
+    "section": "Step 3: Timeline view (optional)",
+    "text": "Step 3: Timeline view (optional)\n\nedges_with_year &lt;- edges_tbl %&gt;%\n  filter(`Edge Type` %in% c(\"influencedBy\", \"LyricalReferenceTo\", \"InStyleOf\")) %&gt;%\n  left_join(nodes_tbl, by = c(\"target\" = \"id\")) %&gt;%\n  filter(!is.na(release_date)) %&gt;%\n  mutate(year = as.numeric(release_date)) %&gt;%\n  left_join(nodes_tbl %&gt;% select(id, artist_name = name), by = c(\"source\" = \"id\"))\n\n# Plot for top 3 artists\ntop3_ids &lt;- top_rising_artists$source[1:3]\n\nedges_with_year %&gt;%\n  filter(source %in% top3_ids) %&gt;%\n  ggplot(aes(x = year, fill = artist_name)) +\n  geom_histogram(binwidth = 1, position = \"dodge\") +\n  labs(title = \"Influence Timeline of Top Rising Artists\",\n       x = \"Year\", y = \"Count of Influence Events\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-select-3-artists-manually",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-select-3-artists-manually",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Select 3 artists manually",
+    "text": "Step 1: Select 3 artists manually\n\nartist_ids &lt;- c(17155, 17349, 17355)"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-compute-influence-count",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-compute-influence-count",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Compute influence count",
+    "text": "Step 2: Compute influence count\n\ninfluence_count &lt;- edges_tbl %&gt;%\n  filter(`Edge Type` %in% c(\"influencedBy\", \"LyricalReferenceTo\", \"InterpolatesFrom\", \"InStyleOf\"),\n         source %in% artist_ids) %&gt;%\n  left_join(nodes_tbl %&gt;% select(id, name), by = c(\"source\" = \"id\")) %&gt;%\n  count(name, sort = TRUE)"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-plot-influence-comparison",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-3-plot-influence-comparison",
+    "title": "Take_homeExercise2",
+    "section": "Step 3: Plot influence comparison",
+    "text": "Step 3: Plot influence comparison\n\nggplot(influence_count, aes(x = reorder(name, n), y = n)) +\n  geom_col(fill = \"tomato\") +\n  coord_flip() +\n  labs(title = \"Influence Comparison of 3 Artists\",\n       x = \"Artist\", y = \"Number of Influence Edges\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-get-oceanus-folk-songs-that-are-frequently-influenced",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-1-get-oceanus-folk-songs-that-are-frequently-influenced",
+    "title": "Take_homeExercise2",
+    "section": "Step 1: Get Oceanus Folk songs that are frequently influenced",
+    "text": "Step 1: Get Oceanus Folk songs that are frequently influenced\n\ntop_influenced_oceanus &lt;- edges_tbl %&gt;%\n  filter(`Edge Type` %in% c(\"influencedBy\", \"InterpolatesFrom\", \"LyricalReferenceTo\", \"InStyleOf\")) %&gt;%\n  count(target, sort = TRUE) %&gt;%\n  inner_join(nodes_tbl, by = c(\"target\" = \"id\")) %&gt;%\n  filter(genre == \"Oceanus Folk\", `Node Type` == \"Song\") %&gt;%\n  top_n(5, n)\n\nprint(top_influenced_oceanus)\n\n# A tibble: 5 × 11\n  target     n `Node Type` name   single release_date genre notable written_date\n   &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;lgl&gt;  &lt;chr&gt;        &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;       \n1   3025    23 Song        Desti… TRUE   2017         Ocea… FALSE   2017        \n2  13324    17 Song        Exile… TRUE   2004         Ocea… TRUE    &lt;NA&gt;        \n3   3501    15 Song        Beyon… TRUE   2007         Ocea… TRUE    &lt;NA&gt;        \n4  16524    14 Song        Tremb… FALSE  2013         Ocea… TRUE    2013        \n5   6994    10 Song        Clock… TRUE   2017         Ocea… TRUE    &lt;NA&gt;        \n# ℹ 2 more variables: stage_name &lt;chr&gt;, notoriety_date &lt;chr&gt;"
+  },
+  {
+    "objectID": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-find-the-lyricists-of-those-songs",
+    "href": "TakehomeExercises/Take_homeExercise2/take_homeExercise2.html#step-2-find-the-lyricists-of-those-songs",
+    "title": "Take_homeExercise2",
+    "section": "Step 2: Find the lyricists of those songs",
+    "text": "Step 2: Find the lyricists of those songs\n\ntop_targets &lt;- top_influenced_oceanus$target  # store outside the pipe\n\nlyricist_ids &lt;- edges_tbl %&gt;%\n  filter(`Edge Type` == \"LyricistOf\", target %in% top_targets) %&gt;%\n  left_join(nodes_tbl, by = c(\"source\" = \"id\")) %&gt;%\n  filter(`Node Type` == \"Person\", !is.na(name)) %&gt;%\n  count(name, sort = TRUE)\n\nprint(lyricist_ids)\n\n# A tibble: 4 × 2\n  name                  n\n  &lt;chr&gt;             &lt;int&gt;\n1 Constance Guibert     1\n2 Eric Beasley          1\n3 Jun Han               1\n4 Wei Ma                1\n\n\nBased on their lyrical contributions to the most influential Oceanus Folk songs, the following artists are predicted to be rising stars in the genre over the next five years : Constance Guibert Eric Beasley Jun Han Wei Ma These artists are positioned to become leading voices in Oceanus Folk as their creative influence continues to grow."
   }
 ]

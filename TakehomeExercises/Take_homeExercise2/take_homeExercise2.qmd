@@ -1,12 +1,11 @@
 ---
 title: "Take_homeExercise2"
 author: "Rajesh"
-format:
+format: 
   html:
     toc: true
 editor: visual
 ---
-
 
 # Getting Started
 
@@ -157,14 +156,15 @@ ggraph(graph_memberof,
   theme_void()
 ```
 
-### Identify Sailor Shift’s Node ID
+## Identify Sailor Shift’s Node ID
 
 ```{r}
 sailor_id <- 17255
 ```
 
-## Who has she been most influenced by over time?
-### Step 1: Find incoming “influencedBy” edges to Sailor Shift.
+# Who has she been most influenced by over time?
+## Step 1: Find incoming “influencedBy” edges to Sailor Shift.
+
 ```{r}
 influencers <- graph %>%
   activate(edges) %>%
@@ -177,7 +177,8 @@ influencers <- graph %>%
 print(influencers)
 ```
 
-### Step 2: Visualize
+## Step 2: Visualize
+
 ```{r}
 graph_influencers <- graph %>%
   activate(edges) %>%
@@ -192,8 +193,9 @@ ggraph(graph_influencers, layout = "fr") +
   theme_void()
 ```
 
-## Who has she collaborated with or influenced?
-### Find outgoing edges of type "collaboratedWith" or "influencedBy"
+# Who has she collaborated with or influenced?
+## Find outgoing edges of type "collaboratedWith" or "influencedBy"
+
 ```{r}
 collab_or_influenced <- graph %>%
   activate(edges) %>%
@@ -205,19 +207,13 @@ collab_or_influenced <- graph %>%
 print(collab_or_influenced)
 ```
 
-Based on the analysis of the knowledge graph data, Sailor Shift (node ID: 17255) does not have any direct "collaborated With" or "influenced By" relationships with other nodes.
-However, she maintains significant musical connections via edge types such as "Lyricist Of", "Lyrical Reference To", "Interpolates From", and "In Style Of".
-These suggest that her influence may be stylistic or lyrical, rather than formal collaborations or direct inspiration as per the dataset's encoded relationships.
-Hence, Sailor Shift’s role appears more implicit or thematic rather than through conventional influence or joint work.
+Based on the analysis of the knowledge graph data, Sailor Shift (node ID: 17255) does not have any direct "collaborated With" or "influenced By" relationships with other nodes. However, she maintains significant musical connections via edge types such as "Lyricist Of", "Lyrical Reference To", "Interpolates From", and "In Style Of". These suggest that her influence may be stylistic or lyrical, rather than formal collaborations or direct inspiration as per the dataset's encoded relationships. Hence, Sailor Shift’s role appears more implicit or thematic rather than through conventional influence or joint work.
 
-## How has Sailor Shift influenced collaborators of the broader Oceanus Folk community?
-### Step 1: Identify all nodes Sailor Shift connects to
-We already know Sailor Shift connects through these edge types:
-"LyricistOf"
-"InStyleOf"
-"LyricalReferenceTo"
-"InterpolatesFrom"
-So we extract all target nodes where Sailor Shift is the source:
+# How has Sailor Shift influenced collaborators of the broader Oceanus Folk community?
+## Step 1: Identify all nodes Sailor Shift connects to
+
+We already know Sailor Shift connects through these edge types: "LyricistOf" "InStyleOf" "LyricalReferenceTo" "InterpolatesFrom" So we extract all target nodes where Sailor Shift is the source:
+
 ```{r}
 connected_ids <- edges_tbl %>%
   filter(source == sailor_id) %>%
@@ -229,8 +225,10 @@ connected_nodes <- nodes_tbl %>%
 print(connected_nodes)
 ```
 
-### Step 2: Filter those connected to Oceanus Folk
+## Step 2: Filter those connected to Oceanus Folk
+
 Now we narrow down: from the nodes she’s connected to, who belongs to the Oceanus Folk genre?
+
 ```{r}
 oceanus_connected <- connected_nodes %>%
   filter(genre == "Oceanus Folk")
@@ -238,8 +236,10 @@ oceanus_connected <- connected_nodes %>%
 print(oceanus_connected)
 ```
 
-### Step 3: Visualize her influence on Oceanus Folk
+## Step 3: Visualize her influence on Oceanus Folk
+
 We now build a subgraph of Sailor Shift + connected Oceanus Folk nodes.
+
 ```{r}
 graph_sailor_oceanus <- graph %>%
   activate(edges) %>%
@@ -253,12 +253,14 @@ ggraph(graph_sailor_oceanus, layout = "fr") +
   geom_node_text(aes(label = name), repel = TRUE) +
   theme_void()
 ```
-Though Sailor Shift has no explicit "influencedBy" or "collaboratedWith" edges in the knowledge graph, she is connected to several artists and songs in the Oceanus Folk genre via edges like "LyricistOf", "InStyleOf", and "InterpolatesFrom".
-These thematic and creative connections suggest her artistic influence is embedded in the style, lyrics, and composition techniques of Oceanus Folk music — reinforcing her role as an indirect influencer and creative contributor in the genre’s development.
 
-## Develop visualizations that illustrate how the influence of Oceanus Folk has spread through the musical world.
-### Step 1: Find all nodes with genre = "Oceanus Folk"
+Though Sailor Shift has no explicit "influencedBy" or "collaboratedWith" edges in the knowledge graph, she is connected to several artists and songs in the Oceanus Folk genre via edges like "LyricistOf", "InStyleOf", and "InterpolatesFrom". These thematic and creative connections suggest her artistic influence is embedded in the style, lyrics, and composition techniques of Oceanus Folk music — reinforcing her role as an indirect influencer and creative contributor in the genre’s development.
+
+# Develop visualizations that illustrate how the influence of Oceanus Folk has spread through the musical world.
+## Step 1: Find all nodes with genre = "Oceanus Folk"
+
 This gives us all songs/artists classified as part of the Oceanus Folk movement
+
 ```{r}
 oceanus_nodes <- nodes_tbl %>%
   filter(genre == "Oceanus Folk")
@@ -266,8 +268,10 @@ oceanus_nodes <- nodes_tbl %>%
 print(oceanus_nodes)
 ```
 
-### Step 2: See how many other nodes are connected (influenced) by these
+## Step 2: See how many other nodes are connected (influenced) by these
+
 We check if Oceanus Folk nodes are sources in "influencedBy", "InStyleOf", or "InterpolatesFrom" edges:
+
 ```{r}
 oceanus_ids <- oceanus_nodes$id
 influenced_by_oceanus <- edges_tbl %>%
@@ -277,8 +281,10 @@ influenced_by_oceanus <- edges_tbl %>%
 print(influenced_by_oceanus %>% select(name, genre, `Node Type`))
 ```
 
-### Step 3: Visualize the spread of Oceanus Folk over time
+## Step 3: Visualize the spread of Oceanus Folk over time
+
 We plot a timeline of influenced nodes, grouped by year or genre:
+
 ```{r}
 # Clean date (some may be NA or characters)
 influenced_by_oceanus %>%
@@ -292,12 +298,13 @@ influenced_by_oceanus %>%
   labs(title = "Spread of Oceanus Folk Influence Over Time",
        x = "Year", y = "Number of Influenced Songs/Artists")
 ```
-The Oceanus Folk genre has had a measurable and growing influence on the broader musical community.
-By tracing outgoing edges such as "influencedBy", "InStyleOf", and "InterpolatesFrom" from Oceanus Folk nodes, we find a diverse group of artists and songs that have incorporated its themes and styles.
-The time-series visualization shows a gradual and sustained spread — with notable growth starting around 1990, suggesting rising popularity and cultural reach.
 
-## Was this influence intermittent or did it have a gradual rise?
-### Step 1: Get influenced nodes with release years
+The Oceanus Folk genre has had a measurable and growing influence on the broader musical community. By tracing outgoing edges such as "influencedBy", "InStyleOf", and "InterpolatesFrom" from Oceanus Folk nodes, we find a diverse group of artists and songs that have incorporated its themes and styles. The time-series visualization shows a gradual and sustained spread — with notable growth starting around 1990, suggesting rising popularity and cultural reach.
+
+# Was this influence intermittent or did it have a gradual rise?
+
+## Step 1: Get influenced nodes with release years
+
 ```{r}
 influenced_by_oceanus %>%
   filter(!is.na(release_date)) %>%
@@ -308,7 +315,8 @@ influenced_by_oceanus %>%
 print(yearly_influence)
 ```
 
-###  Step 2: Plot trend of influence
+## Step 2: Plot trend of influence
+
 ```{r}
 ggplot(yearly_influence, aes(x = year, y = influence_count)) +
   geom_line(color = "darkgreen", linewidth = 1.2) +
@@ -318,13 +326,13 @@ ggplot(yearly_influence, aes(x = year, y = influence_count)) +
        x = "Year", y = "Number of Influenced Nodes") +
   theme_minimal()
 ```
-The trend line of Oceanus Folk’s influence over time indicates a [gradual rise / intermittent pattern].
-The number of influenced songs and artists [started picking up around 1990] and continued to grow steadily across subsequent years.
-This suggests the genre’s organic spread through stylistic or lyrical adoption, rather than isolated or viral bursts.
-Overall, the influence appears to be [sustained and growing / spiky and episodic], based on the observed temporal distribution.
 
-## What genres and top artists have been most influenced by Oceanus Folk?
-### Step 1: Top genres influenced
+The trend line of Oceanus Folk’s influence over time indicates a \[gradual rise / intermittent pattern\]. The number of influenced songs and artists \[started picking up around 1990\] and continued to grow steadily across subsequent years. This suggests the genre’s organic spread through stylistic or lyrical adoption, rather than isolated or viral bursts. Overall, the influence appears to be \[sustained and growing / spiky and episodic\], based on the observed temporal distribution.
+
+# What genres and top artists have been most influenced by Oceanus Folk?
+
+## Step 1: Top genres influenced
+
 ```{r}
 influenced_by_oceanus %>%
   filter(!is.na(genre)) %>%
@@ -338,7 +346,8 @@ influenced_by_oceanus %>%
   theme_minimal()
 ```
 
-###  Step 2: Top artists influenced
+## Step 2: Top artists influenced
+
 ```{r}
 influenced_by_oceanus %>%
   filter(`Node Type` == "Person", !is.na(name)) %>%
@@ -371,13 +380,12 @@ influenced_by_oceanus %>%
   theme_minimal()
 ```
 
-The influence of Oceanus Folk has primarily manifested through musical compositions, especially songs, rather than artists as individuals.
-The most influenced songs include: Ripples and Whispers , Beyond Our Limitations , 
-Destiny’s Call, and others.
-These results suggest that Oceanus Folk has played a strong stylistic or lyrical role in shaping the creative output of the musical community, reinforcing its impact at the song level across genres.
+The influence of Oceanus Folk has primarily manifested through musical compositions, especially songs, rather than artists as individuals. The most influenced songs include: Ripples and Whispers , Beyond Our Limitations , Destiny’s Call, and others. These results suggest that Oceanus Folk has played a strong stylistic or lyrical role in shaping the creative output of the musical community, reinforcing its impact at the song level across genres.
 
-## On the converse, how has Oceanus Folk changed with the rise of Sailor Shift? From which genres does it draw most of its contemporary inspiration?
-### Step 1: Get Oceanus Folk songs
+# On the converse, how has Oceanus Folk changed with the rise of Sailor Shift? From which genres does it draw most of its contemporary inspiration?
+
+## Step 1: Get Oceanus Folk songs
+
 ```{r}
 oceanus_songs <- nodes_tbl %>%
   filter(genre == "Oceanus Folk", `Node Type` == "Song")
@@ -385,7 +393,8 @@ oceanus_songs <- nodes_tbl %>%
 oceanus_song_ids <- oceanus_songs$id
 ```
 
-### Step 2: Find what influenced those songs
+## Step 2: Find what influenced those songs
+
 ```{r}
 influences_to_oceanus <- edges_tbl %>%
   filter(target %in% oceanus_song_ids & `Edge Type` %in% c("influencedBy", "InterpolatesFrom", "LyricalReferenceTo", "InStyleOf"))
@@ -396,7 +405,8 @@ influencer_nodes <- influences_to_oceanus %>%
 print(head(influencer_nodes))
 ```
 
-### Step 3: Plot genres that inspired Oceanus Folk
+## Step 3: Plot genres that inspired Oceanus Folk
+
 ```{r}
 influencer_nodes %>%
   filter(!is.na(genre)) %>%
@@ -410,13 +420,11 @@ influencer_nodes %>%
   theme_minimal()
 ```
 
-The evolution of Oceanus Folk has been shaped by various genres, as seen in the songs that were influenced by other styles and artists.
-The most prominent genres that inspired Oceanus Folk songs include [e.g., Indie Folk, Synthwave, Pop].
-This suggests Oceanus Folk is not an isolated genre but a hybrid, absorbing elements from lyrical storytelling, electronic synth patterns, and indie acoustic traditions.
-With artists like Sailor Shift contributing through lyrical or stylistic influence (LyricistOf, InStyleOf), Oceanus Folk has grown richer and more diverse.
+The evolution of Oceanus Folk has been shaped by various genres, as seen in the songs that were influenced by other styles and artists. The most prominent genres that inspired Oceanus Folk songs include \[e.g., Indie Folk, Synthwave, Pop\]. This suggests Oceanus Folk is not an isolated genre but a hybrid, absorbing elements from lyrical storytelling, electronic synth patterns, and indie acoustic traditions. With artists like Sailor Shift contributing through lyrical or stylistic influence (LyricistOf, InStyleOf), Oceanus Folk has grown richer and more diverse.
 
-## Use your visualizations to develop a profile of what it means to be a rising star in the music industry.
-### Step 1: Identify artists with many outgoing influence edges
+# Use your visualizations to develop a profile of what it means to be a rising star in the music industry.
+
+## Step 1: Identify artists with many outgoing influence edges
 
 ```{r}
 top_rising_artists <- edges_tbl %>%
@@ -430,7 +438,8 @@ top_rising_artists <- edges_tbl %>%
 print(top_rising_artists %>% select(name, n, genre))
 ```
 
-###  Step 2: Plot their influence count
+## Step 2: Plot their influence count
+
 ```{r}
 ggplot(top_rising_artists, aes(x = reorder(name, n), y = n)) +
   geom_col(fill = "mediumseagreen") +
@@ -440,7 +449,8 @@ ggplot(top_rising_artists, aes(x = reorder(name, n), y = n)) +
   theme_minimal()
 ```
 
-### Step 3: Timeline view (optional)
+## Step 3: Timeline view (optional)
+
 ```{r}
 edges_with_year <- edges_tbl %>%
   filter(`Edge Type` %in% c("influencedBy", "LyricalReferenceTo", "InStyleOf")) %>%
@@ -461,19 +471,18 @@ edges_with_year %>%
   theme_minimal()
 ```
 
-## Visualize the careers of three artists. Compare and contrast their rise in popularity and influence.
+# Visualize the careers of three artists. Compare and contrast their rise in popularity and influence.
 
-While the original intent of this question was to chart the career trajectories of three artists over time, the dataset lacked sufficient temporal metadata (such as consistent release dates or influence timestamps). Most influence-type relationships were between songs, not people, and few artists had enough associated time-linked records.
-As an alternative, I examined the number of outgoing influence-related connections for three selected artists: **Daniel O’Connell**, **Claire Holmes**, and **Beatrice Albright**. These edge types included `"influencedBy"`, `"LyricalReferenceTo"`, `"InterpolatesFrom"`, and `"InStyleOf"`.
-The following chart represents each artist's creative reach within the graph dataset based on their number of outgoing influence connections.
+While the original intent of this question was to chart the career trajectories of three artists over time, the dataset lacked sufficient temporal metadata (such as consistent release dates or influence timestamps). Most influence-type relationships were between songs, not people, and few artists had enough associated time-linked records. As an alternative, I examined the number of outgoing influence-related connections for three selected artists: **Daniel O’Connell**, **Claire Holmes**, and **Beatrice Albright**. These edge types included `"influencedBy"`, `"LyricalReferenceTo"`, `"InterpolatesFrom"`, and `"InStyleOf"`. The following chart represents each artist's creative reach within the graph dataset based on their number of outgoing influence connections.
 
-### Step 1: Select 3 artists manually
+## Step 1: Select 3 artists manually
 
 ```{r}
 artist_ids <- c(17155, 17349, 17355)
 ```
 
-### Step 2: Compute influence count
+## Step 2: Compute influence count
+
 ```{r}
 influence_count <- edges_tbl %>%
   filter(`Edge Type` %in% c("influencedBy", "LyricalReferenceTo", "InterpolatesFrom", "InStyleOf"),
@@ -482,7 +491,8 @@ influence_count <- edges_tbl %>%
   count(name, sort = TRUE)
 ```
 
-### Step 3: Plot influence comparison
+## Step 3: Plot influence comparison
+
 ```{r}
 ggplot(influence_count, aes(x = reorder(name, n), y = n)) +
   geom_col(fill = "tomato") +
@@ -492,8 +502,10 @@ ggplot(influence_count, aes(x = reorder(name, n), y = n)) +
   theme_minimal()
 ```
 
-##  Using this characterization, give three predictions of who the next Oceanus Folk stars will be over the next five years.
-### Step 1: Get Oceanus Folk songs that are frequently influenced
+# Using this characterization, give three predictions of who the next Oceanus Folk stars will be over the next five years.
+
+## Step 1: Get Oceanus Folk songs that are frequently influenced
+
 ```{r}
 top_influenced_oceanus <- edges_tbl %>%
   filter(`Edge Type` %in% c("influencedBy", "InterpolatesFrom", "LyricalReferenceTo", "InStyleOf")) %>%
@@ -505,7 +517,8 @@ top_influenced_oceanus <- edges_tbl %>%
 print(top_influenced_oceanus)
 ```
 
-### Step 2: Find the lyricists of those songs
+## Step 2: Find the lyricists of those songs
+
 ```{r}
 top_targets <- top_influenced_oceanus$target  # store outside the pipe
 
@@ -518,9 +531,4 @@ lyricist_ids <- edges_tbl %>%
 print(lyricist_ids)
 ```
 
-Based on their lyrical contributions to the most influential Oceanus Folk songs, the following artists are predicted to be rising stars in the genre over the next five years :
-Constance Guibert
-Eric Beasley
-Jun Han
-Wei Ma
-These artists are positioned to become leading voices in Oceanus Folk as their creative influence continues to grow.
+Based on their lyrical contributions to the most influential Oceanus Folk songs, the following artists are predicted to be rising stars in the genre over the next five years : Constance Guibert Eric Beasley Jun Han Wei Ma These artists are positioned to become leading voices in Oceanus Folk as their creative influence continues to grow.
