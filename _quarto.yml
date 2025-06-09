@@ -27,6 +27,8 @@ website:
             href: HandsOnExercise/Hands_onExercise5/hands_onExercise5.html
           - text: "Hands on Exercise 6 : Visualising and Analysing Time-oriented Data "
             href: HandsOnExercise/Hands_onExercise6/hands_onExercise6.html
+          - text: "Hands on Exercise 8.1 : Visualising and Analysing Time-oriented Data "
+            href: HandsOnExercise/Hands_onExercise8(1)/hands_onExercise8_1.html
       - text: "Take Home Exercises"
         menu:
           - text: " Take home Exercise 1 "
