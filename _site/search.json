@@ -621,5 +621,75 @@
     "title": "Take_homeExercise1",
     "section": "Makeover Version",
     "text": "Makeover Version\n\nmakeover_data &lt;- data %&gt;%\n  filter(PA %in% c(\"Bedok\", \"Tampines\", \"Bukit Timah\", \"Outram\")) %&gt;%\n  group_by(PA, Age, Sex) %&gt;%\n  summarise(Pop = sum(Pop), .groups = \"drop\") %&gt;%\n  mutate(Pop = ifelse(Sex == \"Males\", -Pop, Pop))\n\nggplot(makeover_data, aes(x = Age, y = Pop, fill = Sex)) +\n  geom_bar(stat = \"identity\", width = 0.8) +\n  facet_wrap(~PA, ncol = 2) +\n  coord_flip() +\n  scale_y_continuous(labels = abs) +\n  scale_fill_manual(values = c(\"Males\" = \"#3399FF\", \"Females\" = \"#FF6699\")) +\n  labs(title = \"Improved Population Pyramids of Selected Planning Areas (2024)\",\n       subtitle = \"Standardised layout, corrected axis and color conventions\",\n       x = \"Age Group\", y = \"Population\", fill = \"Sex\") +\n  theme_minimal(base_size = 10) +\n  theme(strip.text = element_text(face = \"bold\"))\n\n\n\n\n\n\n\n\nExplanation of Improvements In this makeover, the missing or overlapping labels were corrected by ensuring clean filtering. Axes are now fixed to allow better population comparisons across areas. Colors were adjusted to align with common conventions (blue for males, pink for females). These changes enhance readability while preserving the original intent."
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html",
+    "title": "Hands_onExercise8(2)",
+    "section": "",
+    "text": "Proportional symbol maps (also known as graduate symbol maps) are a class of maps that use the visual variable of size to represent differences in the magnitude of a discrete, abruptly changing phenomenon, e.g. counts of people. Like choropleth maps, you can create classed or unclassed versions of these maps. The classed ones are known as range-graded or graduated symbols, and the unclassed are called proportional symbols, where the area of the symbols are proportional to the values of the attribute being mapped. In this hands-on exercise, you will learn how to create a proportional symbol map showing the number of wins by Singapore Pools’ outlets using an R package called tmap.\n\n\n\nBy the end of this hands-on exercise, you will acquire the following skills by using appropriate R packages: To import an aspatial data file into R. To convert it into simple point feature data frame and at the same time, to assign an appropriate projection reference to the newly create simple point feature data frame. To plot interactive proportional symbol maps. # Getting Started Before we get started, we need to ensure that tmap package of R and other related R packages have been installed and loaded into R.\n\npacman::p_load(sf, tmap, tidyverse)"
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#overview",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#overview",
+    "title": "Hands_onExercise8(2)",
+    "section": "",
+    "text": "Proportional symbol maps (also known as graduate symbol maps) are a class of maps that use the visual variable of size to represent differences in the magnitude of a discrete, abruptly changing phenomenon, e.g. counts of people. Like choropleth maps, you can create classed or unclassed versions of these maps. The classed ones are known as range-graded or graduated symbols, and the unclassed are called proportional symbols, where the area of the symbols are proportional to the values of the attribute being mapped. In this hands-on exercise, you will learn how to create a proportional symbol map showing the number of wins by Singapore Pools’ outlets using an R package called tmap."
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#learning-outcome",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#learning-outcome",
+    "title": "Hands_onExercise8(2)",
+    "section": "",
+    "text": "By the end of this hands-on exercise, you will acquire the following skills by using appropriate R packages: To import an aspatial data file into R. To convert it into simple point feature data frame and at the same time, to assign an appropriate projection reference to the newly create simple point feature data frame. To plot interactive proportional symbol maps. # Getting Started Before we get started, we need to ensure that tmap package of R and other related R packages have been installed and loaded into R.\n\npacman::p_load(sf, tmap, tidyverse)"
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#the-data",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#the-data",
+    "title": "Hands_onExercise8(2)",
+    "section": "The data",
+    "text": "The data\nThe data set use for this hands-on exercise is called SGPools_svy21. The data is in csv file format. ## Data Import and Preparation The code chunk below uses read_csv() function of readr package to import SGPools_svy21.csv into R as a tibble data frame called sgpools.\n\nsgpools &lt;- read_csv(\"C:\\\\RBSantigari-MITB\\\\ISSS608-VAA\\\\HandsonExercise\\\\Hands_onExercise8(2)\\\\data\\\\SGPools_svy21.csv\")\n\nRows: 306 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): NAME, ADDRESS, OUTLET TYPE\ndbl (4): POSTCODE, XCOORD, YCOORD, Gp1Gp2 Winnings\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nAfter importing the data file into R, it is important for us to examine if the data file has been imported correctly. The code chunk below shows list() is used to do the job.\n\nlist(sgpools) \n\n[[1]]\n# A tibble: 306 × 7\n   NAME           ADDRESS POSTCODE XCOORD YCOORD `OUTLET TYPE` `Gp1Gp2 Winnings`\n   &lt;chr&gt;          &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;\n 1 Livewire (Mar… 2 Bayf…    18972 30842. 29599. Branch                        5\n 2 Livewire (Res… 26 Sen…    98138 26704. 26526. Branch                       11\n 3 SportsBuzz (K… Lotus …   738078 20118. 44888. Branch                        0\n 4 SportsBuzz (P… 1 Sele…   188306 29777. 31382. Branch                       44\n 5 Prime Serango… Blk 54…   552542 32239. 39519. Branch                        0\n 6 Singapore Poo… 1A Woo…   731001 21012. 46987. Branch                        3\n 7 Singapore Poo… Blk 64…   370064 33990. 34356. Branch                       17\n 8 Singapore Poo… Blk 88…   370088 33847. 33976. Branch                       16\n 9 Singapore Poo… Blk 30…   540308 33910. 41275. Branch                       21\n10 Singapore Poo… Blk 20…   560202 29246. 38943. Branch                       25\n# ℹ 296 more rows\n\n\nNotice that the sgpools data in tibble data frame and not the common R data frame."
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#creating-a-sf-data-frame-from-an-aspatial-data-frame",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#creating-a-sf-data-frame-from-an-aspatial-data-frame",
+    "title": "Hands_onExercise8(2)",
+    "section": "Creating a sf data frame from an aspatial data frame",
+    "text": "Creating a sf data frame from an aspatial data frame\nThe code chunk below converts sgpools data frame into a simple feature data frame by using st_as_sf() of sf packages\n\nsgpools_sf &lt;- st_as_sf(sgpools, \n                       coords = c(\"XCOORD\", \"YCOORD\"),\n                       crs= 3414)\n\nThings to learn from the arguments above: The coords argument requires you to provide the column name of the x-coordinates first then followed by the column name of the y-coordinates. The crs argument required you to provide the coordinates system in epsg format. EPSG: 3414 is Singapore SVY21 Projected Coordinate System. You can search for other country’s epsg code by refering to epsg.io.\nYou can display the basic information of the newly created sgpools_sf by using the code chunk below.\n\nlist(sgpools_sf)\n\n[[1]]\nSimple feature collection with 306 features and 5 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 7844.194 ymin: 26525.7 xmax: 45176.57 ymax: 47987.13\nProjected CRS: SVY21 / Singapore TM\n# A tibble: 306 × 6\n   NAME                         ADDRESS POSTCODE `OUTLET TYPE` `Gp1Gp2 Winnings`\n * &lt;chr&gt;                        &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;\n 1 Livewire (Marina Bay Sands)  2 Bayf…    18972 Branch                        5\n 2 Livewire (Resorts World Sen… 26 Sen…    98138 Branch                       11\n 3 SportsBuzz (Kranji)          Lotus …   738078 Branch                        0\n 4 SportsBuzz (PoMo)            1 Sele…   188306 Branch                       44\n 5 Prime Serangoon North        Blk 54…   552542 Branch                        0\n 6 Singapore Pools Woodlands C… 1A Woo…   731001 Branch                        3\n 7 Singapore Pools 64 Circuit … Blk 64…   370064 Branch                       17\n 8 Singapore Pools 88 Circuit … Blk 88…   370088 Branch                       16\n 9 Singapore Pools Anchorvale … Blk 30…   540308 Branch                       21\n10 Singapore Pools Ang Mo Kio … Blk 20…   560202 Branch                       25\n# ℹ 296 more rows\n# ℹ 1 more variable: geometry &lt;POINT [m]&gt;\n\n\nThe output shows that sgppols_sf is in point feature class. It’s epsg ID is 3414. The bbox provides information of the extend of the geospatial data."
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#it-all-started-with-an-interactive-point-symbol-map",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#it-all-started-with-an-interactive-point-symbol-map",
+    "title": "Hands_onExercise8(2)",
+    "section": "It all started with an interactive point symbol map",
+    "text": "It all started with an interactive point symbol map\nThe code chunks below are used to create an interactive point symbol map.\n\ntm_shape(sgpools_sf) + \n  tm_bubbles(fill = \"red\",\n           size = 1,\n           col = \"black\",\n           lwd = 1)"
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#lets-make-it-proportional",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#lets-make-it-proportional",
+    "title": "Hands_onExercise8(2)",
+    "section": "Lets make it proportional",
+    "text": "Lets make it proportional\nTo draw a proportional symbol map, we need to assign a numerical variable to the size visual attribute. The code chunks below show that the variable Gp1Gp2Winnings is assigned to size visual attribute.\n\ntm_shape(sgpools_sf) + \n  tm_bubbles(fill = \"red\",\n             size = \"Gp1Gp2 Winnings\",\n             col = \"black\",\n             lwd = 1)"
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#lets-give-it-a-different-colour",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#lets-give-it-a-different-colour",
+    "title": "Hands_onExercise8(2)",
+    "section": "Lets give it a different colour",
+    "text": "Lets give it a different colour\nThe proportional symbol map can be further improved by using the colour visual attribute. In the code chunks below, OUTLET_TYPE variable is used as the colour attribute variable.\n\ntm_shape(sgpools_sf) + \n  tm_bubbles(fill = \"OUTLET TYPE\", \n             size = \"Gp1Gp2 Winnings\",\n             col = \"black\",\n             lwd = 1)"
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#i-have-a-twin-brothers",
+    "href": "HandsonExercise/Hands_onExercise8(2)/hands_onExercise8(2).html#i-have-a-twin-brothers",
+    "title": "Hands_onExercise8(2)",
+    "section": "I have a twin brothers :)",
+    "text": "I have a twin brothers :)\nAn impressive and little-know feature of tmap’s view mode is that it also works with faceted plots. The argument sync in tm_facets() can be used in this case to produce multiple maps with synchronised zoom and pan settings.\n\ntm_shape(sgpools_sf) + \n  tm_bubbles(fill = \"OUTLET TYPE\", \n             size = \"Gp1Gp2 Winnings\",\n             col = \"black\",\n             lwd = 1) + \n  tm_facets(by= \"OUTLET TYPE\",\n            nrow = 1,\n            sync = TRUE)"
+  },
+  {
+    "objectID": "HandsonExercise/Hands_onExercise8(2)/data/geospatial/MPSZ-2019.html",
+    "href": "HandsonExercise/Hands_onExercise8(2)/data/geospatial/MPSZ-2019.html",
+    "title": "ISSS608-VAA",
+    "section": "",
+    "text": "&lt;!DOCTYPE qgis PUBLIC ‘http://mrcc.com/qgis.dtd’ ‘SYSTEM’&gt;     dataset\n\n\n        0 0     false"
   }
 ]
