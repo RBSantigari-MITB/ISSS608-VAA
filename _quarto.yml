@@ -29,8 +29,10 @@ website:
             href: HandsOnExercise/Hands_onExercise6/hands_onExercise6.html
           - text: "Hands on Exercise 8.1 : Choropleth Mapping with R "
             href: HandsOnExercise/Hands_onExercise8(1)/hands_onExercise8_1.html
-          - text: "Hands on Exercise 8.2 : Choropleth Mapping with R "
+          - text: "Hands on Exercise 8.2 : Visualising Geospatial Point Data "
             href: HandsOnExercise/Hands_onExercise8(2)/hands_onExercise8_2.html
+          - text: "Hands on Exercise 8.3 : Analytical Mapping "
+            href: HandsOnExercise/Hands_onExercise8(3)/hands_onExercise8_3.html
       - text: "Take Home Exercises"
         menu:
           - text: " Take home Exercise 1 "
