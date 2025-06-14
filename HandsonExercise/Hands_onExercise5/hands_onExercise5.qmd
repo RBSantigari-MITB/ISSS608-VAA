@@ -8,7 +8,9 @@ editor: visual
 ---
 
 # Modelling, Visualising and Analysing Network Data with R
+
 ## Getting Started
+
 ### Installing and launching R packages
 
 ```{r}
@@ -18,7 +20,8 @@ pacman::p_load(igraph, tidygraph, ggraph,
                concaveman, ggforce)
 ```
 
-## The Data 
+## The Data
+
 ### Importing network data from files
 
 ```{r}
@@ -70,9 +73,12 @@ glimpse(GAStech_edges_aggregated)
 glimpse(GAStech_nodes)
 ```
 
-## Creating network objects using tidygraph 
-### The tbl_graph object 
-### The dplyr verbs in tidygraph 
+## Creating network objects using tidygraph
+
+### The tbl_graph object
+
+### The dplyr verbs in tidygraph
+
 ### Using tbl_graph() to build tidygraph data model.
 
 ### Build tidygraph object
@@ -101,7 +107,8 @@ GAStech_graph %>%
   arrange(desc(Weight))
 ```
 
-## Plotting Static Network Graphs with ggraph package 
+## Plotting Static Network Graphs with ggraph package
+
 ### Plotting a basic network graph
 
 ```{r}
@@ -195,7 +202,8 @@ g <- ggraph(GAStech_graph,
 g + theme_graph()
 ```
 
-## Creating facet graphs 
+## Creating facet graphs
+
 ### Working with facet_edges()
 
 ```{r}
@@ -268,7 +276,8 @@ g + facet_nodes(~Department)+
 
 ```
 
-## Network Metrics Analysis 
+## Network Metrics Analysis
+
 ### Computing centrality indices
 
 ```{r}
