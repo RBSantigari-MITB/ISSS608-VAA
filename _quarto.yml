@@ -39,6 +39,8 @@ website:
             href: TakehomeExercises/Take_homeExercise1/take_homeExercise1.html
           - text: " Take home Exercise 2 "
             href: TakehomeExercises/Take_homeExercise2/take_homeExercise2.html
+          - text: " Take home Exercise 3 "
+            href: TakehomeExercises/Take_homeExercise3/take_homeExercise3.html
       - text: "In Class Exercises"
         menu:
           - text: "In class Exercise 5"
