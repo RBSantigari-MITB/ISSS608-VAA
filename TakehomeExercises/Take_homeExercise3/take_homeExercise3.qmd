@@ -31,6 +31,27 @@ This storyboard focuses on the following key analytical goals:
 
 Together, these sections simulate a user’s journey through the dashboard, enabling exploration of complex musical data through intuitive and insightful visual design.
 
+
+## MC1: Sailor Shift Career Profile Analysis
+
+### Section 1: Career Timeline Analysis
+
+This visualization transforms the static career timeline from Take-home 2 into an interactive exploration tool.
+
+![](images/sailor_profile.png)
+![](images/sailor_timeline.png)
+
+
+**Current Static Visualization:** The profile shows Sailor Shift as the #1 PageRank artist with 60 total connections across multiple edge types. The timeline displays her work output across three roles (Performer, Lyricist, Producer) from 2024-2040.
+
+**Interactive Enhancements:** - **Year Range Slider**: Users can zoom into specific periods (e.g., 2028-2032 breakthrough years) 
+**Role Checkboxes**: Toggle visibility of Performer/Lyricist/Producer lines
+**Hover Details**: Display exact counts and potentially song titles
+**Click Actions**: Click a point to see all works from that year
+
+**Key Insight:** The timeline reveals Sailor's evolution from lyricist (2024) to multi-role artist, with peak productivity in the LyricistOf role throughout her career. Notable peaks occur in 2030 (5 performances) and 2034 (4 performances).
+
+
 ## MC1: Spread of Oceanus Folk Influence Over Time
 
 ### Section: Timeline of Oceanus Folk Influence
@@ -80,23 +101,6 @@ Oceanus Folk’s influence is far-reaching — while it originated as a niche ge
 
 This genre-level spread reflects Oceanus Folk’s adaptability and emotional resonance, making it an inspirational source for composers across stylistic boundaries.
 
-## MC1: Top Artists Influenced by Oceanus Folk
-
-### Section: Influencer Impact – Artist-Level Reach
-
-This section identifies the **top artists** who have been stylistically influenced by Oceanus Folk. It uses knowledge graph relationships like `InStyleOf`, `InterpolatesFrom`, and `LyricalReferenceTo` to measure **who absorbed the genre’s creative DNA**.
-
-The bar chart ranks artists by **how often they were targets of such influence links**.
-
-### Mockup Preview
-
-![Top Artists Influenced](images/top_artists_influenced_mockup.jpg)
-
-### Interpretation:
-
-The Oceanus Folk genre has **influenced a wide spectrum of artists**, including emerging names and established figures. These artists have likely adopted stylistic, lyrical, or compositional elements inspired by Oceanus Folk.
-
-This panel helps users understand **who carried forward the genre’s legacy**, and offers context on the artists who are most stylistically adjacent to Oceanus Folk.
 
 ## MC1: Genres That Inspired Oceanus Folk
 
@@ -118,3 +122,82 @@ These genres likely influenced the **ambient tones**, **lyrical depth**, and **e
 
 The takeaway:\
 **Oceanus Folk is not a standalone creation**, but rather a genre deeply rooted in acoustic, electronic, and atmospheric traditions, allowing it to be both familiar and innovative.
+
+## MC1: Career Influence Comparison
+
+### Section: Visualizing Career Influence of Selected Artists
+
+This section compares the **influence footprint** of three selected artists — **Daniel O'Connell**, **Claire Holmes**, and **Beatrice Albright** — based on the number of stylistic influence edges connected to them.
+
+By visualizing the number of outgoing influence links, we gain insight into:
+
+How **prolifically** each artist contributed to shaping others in the music scene, Their **relative impact** on genre propagation or artistic inspiration, Patterns of **stylistic transmission** over time, even in the absence of detailed time-series metadata.
+
+### Mockup Preview
+
+![](images/artist_career_comparison_mockup.jpg)
+
+### Interpretation:
+
+All three artists show a **comparable influence count**, suggesting they played meaningful roles in **spreading stylistic motifs** within the Oceanus Folk ecosystem.
+
+While we may not have detailed timelines or awards metadata, this visualization acts as a **proxy for career reach**. Artists like Daniel O'Connell and Claire Holmes may represent emerging talents, whereas Beatrice Albright’s consistent stylistic connections suggest a steady artistic influence.
+
+This view enables quick **comparative assessment** when deeper metrics (e.g., chart positions or collaborations) are unavailable.
+
+
+## MC1: Rising Stars Prediction
+
+### Section: Future Oceanus Folk Stars (Next 5 Years)
+
+This section transforms the static rising stars prediction from Take-home 2 into an interactive exploration tool for identifying the next Oceanus Folk superstars.
+
+![Rising Stars Table](images/rising_stars_table.png)
+
+![Rising Stars Network vs Versatility](images/rising_stars_network_versatility.png)
+
+**Current Static Visualization:** The prediction model identifies top rising stars based on recent activity (post-2030), PageRank \< 0.0002, and a composite potential score. The scatter plot reveals the relationship between network connections and artistic versatility.
+
+### Top 3 Predicted Oceanus Folk Stars (2040-2045):
+
+**1. Andrew Williams (Potential Score: 3.548)** - **Profile**: Veteran artist with 26 total works across 4 different roles
+**Key Strength**: Highest network degree (26 connections) combined with strong versatility  **Prediction Rationale**: His extensive network and multi-role experience position him to become the next major Oceanus Folk influencer
+
+**2. Brian Wright (Potential Score: 3.197)**\
+**Profile**: Veteran artist with 22 works across 3 roles
+**Key Strength**: Balanced network connections (22) with focused expertise
+**Prediction Rationale**: Similar trajectory to successful artists - strong connections with specialized skills
+
+**3. Kael Storm (Potential Score: 2.668)** - **Profile**: Established artist with 14 works across 5 different roles
+**Key Strength**: Highest versatility score among top candidates
+**Prediction Rationale**: His diverse skill set across 5 roles mirrors Sailor Shift's multi-faceted approach
+
+### Community Distribution Analysis
+
+![Rising Stars by Community](images/rising_stars_community.png)
+
+**Community Insights:** Rising stars are concentrated in Communities 9 (8 artists) and 4 (2 artists), suggesting these are the emerging hubs for Oceanus Folk innovation.
+
+### Success Pattern Validation
+
+![Rising vs Successful Artists Comparison](images/rising_stars_comparison.png)
+
+**Validation Insights:** Rising stars show similar patterns to successful artists in degree and work types, but with lower total works - indicating they are on the right trajectory but earlier in their careers.
+
+### Interactive Enhancement Features:
+
+**1. Predictive Dashboard Controls:** - **Threshold Sliders**: Adjust PageRank, activity period, and minimum works to see how predictions change 
+**Weight Adjustment**: Modify the importance of network connections vs. versatility vs. output **Time Window**: Slide forward to predict 10-year or 15-year horizons
+
+**2. Artist Deep Dive:** - **Click any artist**: Expand to see full career trajectory, collaborations, and influence network
+**Compare Mode**: Select multiple artists to see side-by-side career comparisons 
+**What-If Analysis**: Simulate how new collaborations might affect potential scores
+
+**3. Community Explorer:** - **Filter by Community**: Focus predictions on specific music communities
+**Migration Patterns**: Visualize how artists move between communities over time
+**Community Health Metrics**: Show which communities are growing vs. declining
+
+**4. Real-time Model Updates:** - **Live Scoring**: As new data arrives, see how artist rankings change - **Confidence Intervals**: Display prediction uncertainty for each artist **Alert System**: Notify when an artist's trajectory significantly changes
+
+
+**Key Takeaway:** The model successfully identifies artists who combine Sailor Shift's key success factors: strong network connections, multi-role versatility, and active recent output. The interactive features will allow users to explore different scenarios and understand what drives success in the Oceanus Folk genre.
