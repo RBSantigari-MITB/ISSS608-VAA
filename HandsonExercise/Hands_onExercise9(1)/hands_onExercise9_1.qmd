@@ -35,12 +35,17 @@ pacman::p_load(plotly, ggtern, tidyverse)
 
 For the purpose of this hands-on exercise, the Singapore Residents by Planning AreaSubzone, Age Group, Sex and Type of Dwelling, June 2000-2018 data will be used. The data set has been downloaded and included in the data sub-folder of the hands-on exercise folder. It is called respopagsex2000to2018_tidy.csv and is in csv file format.
 
+```{r}
+setwd("C:/RBSantigari-MITB/ISSS608-VAA/HandsonExercise/Hands_onExercise9(1)")
+```
+
 ### Importing Data
 
 To important respopagsex2000to2018_tidy.csv into R, read_csv() function of readr package will be used.
 
 ```{r}
-pop_data <- read_xlsx("C:\\RBSantigari-MITB\\ISSS608-VAA\\HandsonExercise\\Hands_onExercise9(1)\\data\\respopagesextod2000to2020e.xlsx") 
+#Reading the data into R environment
+pop_data <- read_csv("data/respopagsex2000to2018_tidy.csv")  
 ```
 
 ### Preparing the Data
