@@ -35,14 +35,6 @@ tidyverse provides a collection of functions for performing data science task su
 
 ## Importing Microsoft Access database
 
-### The data set
-
-For the purpose of this study, a personal database in Microsoft Access mdb format called Coffee Chain will be used.
-
-### Importing database into R
-
-
-
 ### Data Preparation
 The code chunk below is used to import CoffeeChain.rds into R.
 
