@@ -41,8 +41,8 @@ website:
             href: HandsOnExercise/Hands_onExercise9(3)/hands_onExercise9_3.html
           - text: "Hands on Exercise 9.4 : Visual Multivariate Analysis with Parallel Coordinates Plot "
             href: HandsOnExercise/Hands_onExercise9(4)/hands_onExercise9_4.html
-          - text: "Hands on Exercise 9.5 : Treemap Visualisation with R "
-            href: HandsOnExercise/Hands_onExercise9(5)/hands_onExercise9_5.html
+          - text: "Hands on Exercise 10 : Information Dashboard Design: R methods "
+            href: HandsOnExercise/Hands_onExercise10/hands_onExercise10.html
       - text: "Take Home Exercises"
         menu:
           - text: " Take home Exercise 1 "

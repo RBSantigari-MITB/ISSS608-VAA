@@ -155,4 +155,3 @@ ggraph(graph_memberof,
                  size = 2.5) +
   theme_void()
 ```
-
